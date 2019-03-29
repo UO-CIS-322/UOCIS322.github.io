@@ -1,0 +1,5 @@
+/* A CSS file can have C-style comments */
+
+/* Select by element type */ 
+h1  { color="red"; }
+li  { color="green"; }
