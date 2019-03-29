@@ -6,4 +6,4 @@ li  { color: green; }
 
 /* Select by class */
 .disclaimer { size: 75%; }
-.useless-extra-warning { font-weight: bold; }
+.useless-extra-warning { color: red; font-weight: bold; }
