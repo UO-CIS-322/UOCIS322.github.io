@@ -279,7 +279,21 @@ The result:
 
 ![](/img/firefox-edit-styled-step2.png)
 
-A third way a CSS style specification can be associated with an element is by a unique identifier associated uniquely with that element.  Occasionally this is necessary, but we avoid it to the extent possible because it breaks the separation between content and style.   When we must breech that separation, we might as well do so by inserting the style specification directly in the html, like this:
+A third way a CSS style specification can be associated with an element is by a unique identifier associated uniquely with that element.  Occasionally this is necessary, but we avoid it to the extent possible because it breaks the separation between content and style.   When we absolutely must breech that separation, we might as well do so by inserting the style specification directly in the html, like this:
+
+```
+<li>Shaun of the Dead <span style="color: black;">(2004)</span></li>
+```
+
+But avoid it when you can! 
+
+### Composing and debugging selectors
+
+The element and class descriptors can be combined.  For example, a selector p.disclaimer would match &lt;p class="disclaimer"&gt; but not &lt;h2 class="disclaimer"&gt;.   One can also make a single specification apply to several different types of elements \(e.g., h1,h2,h3 to match the first three levels of header\), and even match elements only in certain contexts.  
+
+The many ways selectors can be specified and combined provides a lot of flexibility, but that flexibility has a price:  The developer often specifies a pattern that they expect to match certain elements in the html, but does not observe the intended effect when displaying the page.  Occasionally this is because the selector pattern does not actually match, but more often it is because some other selector pattern also matches, and the conflict between style specifications has been resolved in an unexpected way.   This is a very common problem especially when the developer is using not only their own custom style sheets but also some style sheets from external developers, which often accompany libraries like the bootstrap library for responsive design.  
+
+Fortunately all the common browsers provide debugger support for determining which style selectors have matched an element and how those styles have been combined.  For example, in Firefox we use Tools &gt;&gt; Web Developer &gt;&gt; Inspector to see the HTML together with the style information: 
 
 
 
