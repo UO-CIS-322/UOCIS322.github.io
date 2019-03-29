@@ -202,8 +202,6 @@ Next, use heading and list tags in the editor to recreate the following in the b
 
 ![](/img/firefox-edit-simple-step2.png)
 
-
-
 ## Doing it in Style
 
 So far we haven't said anything about how to control colors, typefaces, page layout, etc.  In the early days of the web, these were controlled directly in HTML, with tags like &lt;center&gt; and even the notorious &lt;blink&gt;.   Page layouts were often produced by creating monstrous tables with cells for each section of the page.  Worse, to obtain visual effects that were beyond the power of HTML, many authors typeset fancy headings into images and placed those images in web pages in place of text.  You may imagine how well that worked for blind users who depend on screen readers.   We don't do that anymore.  We use style sheets coded in the _Cascading Style Sheet_ \(CSS\) instead.
@@ -212,11 +210,30 @@ It may seem annoying at first that we use two completely different notations for
 
 ### Separation of Concerns: Content vs Presentation
 
-Motivations:  Allow changing one without changing the other.  Reuse styles across pages, and change them all consistently. Allow specialists to contribute to layout and typography.  Use a notation suited to the task.
+Our biggest challenges in constructing software of any kind, from web sites to embedded systems to enterprise applications, is controlling complexity.  We can't fit all the details of a software system in our head at once, let alone think clearly about all the possible ways we could solve every problem at once.   Moreover, we can't solve problems once and for all and leave them be, because every successful software system continues to evolve and adapt to new needs.  If we build a successful system, we can look forward to revisiting it and getting to know it again and again, and those details that were hard enough to keep straight when we initially built it will be twice as hard to absorb when we have been away from the project for weeks or months or years.  We must do everything we can to break the complexity down into subproblems that we can understand and solve separately.  
 
-### CSS Structure
+One of the useful separations that we can \(mostly\) make is between the content and logical structure of the information to be displayed, on the one hand, and presentation issues like layout, typefaces, and use of color on the other.  This is a particularly useful separation because the _content_ of a web site or application tends to evolve somewhat separately from its _presentation:  _Often we will revise one \(e.g., adding some content\) without modifying the other.  Identifying concerns that tend to change independently is a key technique in software engineering, and the basic architecture of the world-wide web is designed to support  separation between concerns of content and presentation.   We write content in HTML and control presentation with CSS, in style sheets.  By localizing presentation decisions in a style sheet, we can write a single style sheet that applies to several pages in a web site.  This helps us maintain consistency across the site, and  greatly reduces the work and chance of errors when we make a style change that should apply to all pages.   Two years from now, when everyone is reading web pages on larger phones, or smaller smart watches, or some device we haven't yet imagined, new style sheets can be designed to optimize presentation for those devices with a minimum of disruption to the content. 
 
-Referencing a CSS file from the HEAD
+### Loading a Style Sheet \(or several\) 
+
+Style specifications appear in documents called _style sheets_, which are usually separate from the web pages they are applied to, so that a single style sheet can be applied to several pages.  A link in the &lt;head&gt; section of a web page can tell the browser to obtain and apply a style sheet: 
+
+```
+<link href="./styles/style.css" rel="stylesheet" type="text/css" />
+```
+
+A single web page may link multiple style sheets, and may indicate that the style to be applied depends on the device on which the web page is displayed.  The web client \(browser\) will then request just the appropriate stylesheets from the web server.  For example, we may wish to use a lot of color on the screen, but minimize areas of dark color when printing. We might even display a navigation sidebar on the screen, but suppress it when printing a page.  It is common to use one style sheet to control presentation on a screen, and another to control presentation in print media: 
+
+```
+   <link rel="stylesheet" type="text/css" href="./lib/cis322.css" media="screen"/>
+   <link rel="stylesheet" type="text/css" href="./lib/cis322-print.css" media="print"/>
+```
+
+### Associating styles with content
+
+Style specifications in a CSS style sheet are associated with elements in the HTML by matching.  We can match by element type \(e.g., subheads with tag &lt;h2&gt;\), or with named "classes" , or with identifiers attached to individual elements. 
+
+Suppose we wanted all the first level headings  \(&lt;h2&gt; elements\) to be red, and list elements \(&lt;li&gt;\) to be green.  
 
 Associating style with an element:   by class, by kind, by name
 
