@@ -3,3 +3,7 @@
 /* Select by element type */ 
 h1  { color: red; }
 li  { color: green; }
+
+/* Select by class */
+.disclaimer { size=75%; }
+.
