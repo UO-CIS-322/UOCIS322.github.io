@@ -233,7 +233,7 @@ A single web page may link multiple style sheets, and may indicate that the styl
 
 Style specifications in a CSS style sheet are associated with elements in the HTML by matching.  We can match by element type \(e.g., subheads with tag &lt;h2&gt;\), or with named "classes" , or with identifiers attached to individual elements.
 
-Suppose we wanted all the first level headings  \(&lt;h1&gt; elements\) to be red, and list elements \(&lt;li&gt;\) to be green.  We could create simple-style.css with this specification: 
+Suppose we wanted all the first level headings  \(&lt;h1&gt; elements\) to be red, and list elements \(&lt;li&gt;\) to be green.  We could create simple-style.css with this specification:
 
 ```
 /* A CSS file can have C-style comments */
@@ -243,7 +243,21 @@ h1  { color: red; }
 li  { color: green; }
 ```
 
-We could then reference simple-style.css from within our web page \(.html\) file: 
+We could then reference simple-style.css from within our web page \(.html\) file:
+
+```
+<head> 
+  <title>Sample</title>
+  <link rel="stylesheet" type="text/css" href="simple-style.css" media="screen"/>
+</head>
+
+```
+
+Voila, we now have some gaudy and ill-considered flair! 
+
+![](/img/firefox-edit-styled-step1.png)
+
+
 
 
 
