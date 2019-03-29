@@ -256,28 +256,35 @@ Voila, we now have some gaudy and ill-considered flair!
 
 ![](/img/firefox-edit-styled-step1.png)
 
-Often we won't want to apply the same style to all elements of a given kind.  For example, we might want to apply a particular style only to paragraphs that are used for legal disclaimers.   You may recall that we included a "class" parameter with some tags in our html examples above.  We can define any "class" name we like and associate it with a style specification.  For example: 
+Often we won't want to apply the same style to all elements of a given kind.  For example, we might want to apply a particular style only to paragraphs that are used for legal disclaimers.   You may recall that we included a "class" parameter with some tags in our html examples above.  We can define any "class" name we like and associate it with a style specification.  For example:
 
 ```
 /* Select by class */
 .disclaimer { font-size: 75%; }
 .useless-extra-warning { color: red; font-weight: bold; }
+```
+
+Then we can associate one of these classes with a paragraph, and another with a limited span of text within the paragraph:
+
+```
+<p>The classic, and a modern treatment.</p>
+<p class="disclaimer">Watch at your own risk. 
+   The publishers of this web site accept no legal responsibility 
+   for shock and fear that may be encountered by audiences of the original movie, nor 
+   for puzzlement and humor that may be encountered at the second.  
+   <span class="useless-extra-warning">You have been warned.</span>
 
 ```
 
-Then we can associate one of these classes with a paragraph, and another with a limited span of text within the paragraph: 
+The result: 
 
-```
 
-```
 
 Composing selectors;  selection by specificity
 
 ```
 
 ```
-
-
 
 Debugging CSS selection:  Why isn't this text green?
 
