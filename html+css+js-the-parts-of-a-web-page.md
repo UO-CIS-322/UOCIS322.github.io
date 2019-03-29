@@ -196,6 +196,10 @@ Notice that the tab label is a path to the file \(which will vary depending on w
 
 Save the file, then use the 'refresh' button in your browser.  Now you should see:
 
+![](/img/firefox-edit-simple-step1.png)
+
+Next, use heading and list tags in the editor to recreate the following in the browser display: 
+
 
 
 ## Doing it in Style
