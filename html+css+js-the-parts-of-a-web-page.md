@@ -180,9 +180,21 @@ Save the file.  Next we will open it in a browser.  This was tested with Firefox
 
 ![](/img/firefox-open-simple-step1.png)
 
-and then 
+and then
 
 ![](/img/firefox-open-simple-step2.png)
+
+You should see something like this: 
+
+![](/img/firefox-open-simple-step3.png)
+
+Notice that the tab label is a path to the file \(which will vary depending on where you saved the file\).  Let's fix that.  Leaving the browser window open, use your text editor to add the following in the head section \(between &lt;head&gt; and &lt;/head&gt;\): 
+
+```
+<title>Sample</title>
+```
+
+Save the file, then use the 'refresh' button in your browser.  Now you should see: 
 
 
 
