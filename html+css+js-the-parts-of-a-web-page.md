@@ -279,7 +279,7 @@ The result:
 
 ![](/img/firefox-edit-styled-step2.png)
 
-A third way a CSS style specification can be associated with an element is by a unique identifier associated uniquely with that element.  Occasionally this is necessary, but we avoid it to the extent possible because it breaks the separation between content and style.   When we must breech that separation, we might as well do so by inserting the style specification directly in the html, like this: 
+A third way a CSS style specification can be associated with an element is by a unique identifier associated uniquely with that element.  Occasionally this is necessary, but we avoid it to the extent possible because it breaks the separation between content and style.   When we must breech that separation, we might as well do so by inserting the style specification directly in the html, like this:
 
 
 
