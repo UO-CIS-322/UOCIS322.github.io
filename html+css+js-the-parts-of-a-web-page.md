@@ -285,25 +285,19 @@ A third way a CSS style specification can be associated with an element is by a 
 <li>Shaun of the Dead <span style="color: black;">(2004)</span></li>
 ```
 
-But avoid it when you can! 
+But avoid it when you can!
 
 ### Composing and debugging selectors
 
-The element and class descriptors can be combined.  For example, a selector p.disclaimer would match &lt;p class="disclaimer"&gt; but not &lt;h2 class="disclaimer"&gt;.   One can also make a single specification apply to several different types of elements \(e.g., h1,h2,h3 to match the first three levels of header\), and even match elements only in certain contexts.  
+The element and class descriptors can be combined.  For example, a selector p.disclaimer would match &lt;p class="disclaimer"&gt; but not &lt;h2 class="disclaimer"&gt;.   One can also make a single specification apply to several different types of elements \(e.g., h1,h2,h3 to match the first three levels of header\), and even match elements only in certain contexts.
 
-The many ways selectors can be specified and combined provides a lot of flexibility, but that flexibility has a price:  The developer often specifies a pattern that they expect to match certain elements in the html, but does not observe the intended effect when displaying the page.  Occasionally this is because the selector pattern does not actually match, but more often it is because some other selector pattern also matches, and the conflict between style specifications has been resolved in an unexpected way.   This is a very common problem especially when the developer is using not only their own custom style sheets but also some style sheets from external developers, which often accompany libraries like the bootstrap library for responsive design.  
+The many ways selectors can be specified and combined provides a lot of flexibility, but that flexibility has a price:  The developer often specifies a pattern that they expect to match certain elements in the html, but does not observe the intended effect when displaying the page.  Occasionally this is because the selector pattern does not actually match, but more often it is because some other selector pattern also matches, and the conflict between style specifications has been resolved in an unexpected way.   This is a very common problem especially when the developer is using not only their own custom style sheets but also some style sheets from external developers, which often accompany libraries like the bootstrap library for responsive design.
 
-Fortunately all the common browsers provide debugger support for determining which style selectors have matched an element and how those styles have been combined.  For example, in Firefox we use Tools &gt;&gt; Web Developer &gt;&gt; Inspector to see the HTML together with the style information: 
+Fortunately all the common browsers provide debugger support for determining which style selectors have matched an element and how those styles have been combined.  For example, in Firefox we use Tools &gt;&gt; Web Developer &gt;&gt; Inspector to see the HTML together with the style information:
 
+![](/img/firefox-style-inspector.png)
 
-
-Composing selectors;  selection by specificity
-
-```
-
-```
-
-Debugging CSS selection:  Why isn't this text green?
+Debugging selectors is still challenging, because nothing can provide an explanation of the selector that _should_ match but _doesn't, _but learning to use the built-in debugging tools in your browser will make it much more efficient than blindly changing code in your html and css files to find a combination that works. 
 
 ### CSS Styling
 
