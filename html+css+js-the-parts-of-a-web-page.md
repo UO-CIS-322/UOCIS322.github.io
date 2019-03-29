@@ -250,14 +250,13 @@ We could then reference simple-style.css from within our web page \(.html\) file
   <title>Sample</title>
   <link rel="stylesheet" type="text/css" href="simple-style.css" media="screen"/>
 </head>
-
 ```
 
-Voila, we now have some gaudy and ill-considered flair! 
+Voila, we now have some gaudy and ill-considered flair!
 
 ![](/img/firefox-edit-styled-step1.png)
 
-
+Often we won't want to apply the same style to all elements of a given kind.  For example, we might want to apply a particular style only to paragraphs that are used for legal disclaimers.   You may recall that we included a "class" parameter with some tags in our html examples above.  We can define any "class" name we like and associate it with a style specification.  For example: 
 
 
 
