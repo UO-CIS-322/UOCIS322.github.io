@@ -198,7 +198,9 @@ Save the file, then use the 'refresh' button in your browser.  Now you should se
 
 ![](/img/firefox-edit-simple-step1.png)
 
-Next, use heading and list tags in the editor to recreate the following in the browser display: 
+Next, use heading and list tags in the editor to recreate the following in the browser display:
+
+![](/img/firefox-edit-simple-step2.png)
 
 
 
