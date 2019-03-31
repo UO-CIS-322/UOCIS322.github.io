@@ -1,0 +1,33 @@
+/* 
+ * Zombie mashups
+ */
+
+/* Set baseline for variation in the 'body' element, 
+ * which is the parent of all the other displayed content.
+ */
+
+body { font-family: Helvetica, Arial, sans-serif;
+       font-size: 12pt;
+       font-weight: light;
+     }
+
+
+/* Individual elements and classes are given as variants
+ *  on their parent element, which may in turn have inherited 
+ * attributes from 'body'. 
+ */
+
+h1 { color: rgb(219, 56, 24); }
+
+.precis {
+    font-family:  Times, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 125%; 
+    margin-left:3em;   /* Width of 3 'm' in the current font. */ 
+    margin-right: 3em; 
+}
+
+.movie-title {
+    font-weight: bold; 
+    color: rgb(219, 56, 24);
+}
