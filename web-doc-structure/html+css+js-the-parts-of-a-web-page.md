@@ -156,7 +156,7 @@ Even if we don't care about being found by search engines, one element we usuall
 
 so that in the browser we will see:
 
-![](/img/browser-tab.png)
+![](img/browser-tab.png)
 
 ### Exercise: A Minimal Web Page
 
@@ -178,15 +178,15 @@ Create an empty file called simple.html and open it any text editor \(vim, emacs
 
 Save the file.  Next we will open it in a browser.  This was tested with Firefox, but other browsers \(Chrome, Safari, Edge, etc\) should work as well.  You may be able to drag and drop the file onto the browser, or you can use the 'open file' command from the browser menu, like this in Firefox:
 
-![](/img/firefox-open-simple-step1.png)
+![](img/firefox-open-simple-step1.png)
 
 and then
 
-![](/img/firefox-open-simple-step2.png)
+![](img/firefox-open-simple-step2.png)
 
 You should see something like this:
 
-![](/img/firefox-open-simple-step3.png)
+![](img/firefox-open-simple-step3.png)
 
 Notice that the tab label is a path to the file \(which will vary depending on where you saved the file\).  Let's fix that.  Leaving the browser window open, use your text editor to add the following in the head section \(between &lt;head&gt; and &lt;/head&gt;\):
 
@@ -196,11 +196,11 @@ Notice that the tab label is a path to the file \(which will vary depending on w
 
 Save the file, then use the 'refresh' button in your browser.  Now you should see:
 
-![](/img/firefox-edit-simple-step1.png)
+![](img/firefox-edit-simple-step1.png)
 
 Next, use heading and list tags in the editor to recreate the following in the browser display:
 
-![](/img/firefox-edit-simple-step2.png)
+![](img/firefox-edit-simple-step2.png)
 
 ## Doing it in Style
 
@@ -254,7 +254,7 @@ We could then reference simple-style.css from within our web page \(.html\) file
 
 Voila, we now have some gaudy and ill-considered flair!
 
-![](/img/firefox-edit-styled-step1.png)
+![](img/firefox-edit-styled-step1.png)
 
 Often we won't want to apply the same style to all elements of a given kind.  For example, we might want to apply a particular style only to paragraphs that are used for legal disclaimers.   You may recall that we included a "class" parameter with some tags in our html examples above.  We can define any "class" name we like and associate it with a style specification.  For example:
 
@@ -277,7 +277,7 @@ Then we can associate one of these classes with a paragraph, and another with a 
 
 The result:
 
-![](/img/firefox-edit-styled-step2.png)
+![](img/firefox-edit-styled-step2.png)
 
 A third way a CSS style specification can be associated with an element is by a unique identifier associated uniquely with that element.  Occasionally this is necessary, but we avoid it to the extent possible because it breaks the separation between content and style.   When we absolutely must breech that separation, we might as well do so by inserting the style specification directly in the html, like this:
 
@@ -295,7 +295,7 @@ The many ways selectors can be specified and combined provides a lot of flexibil
 
 Fortunately all the common browsers provide debugger support for determining which style selectors have matched an element and how those styles have been combined.  For example, in Firefox we use Tools &gt;&gt; Web Developer &gt;&gt; Inspector to see the HTML together with the style information:
 
-![](/img/firefox-style-inspector.png)
+![](img/firefox-style-inspector.png)
 
 Debugging selectors is still challenging, because nothing can provide an explanation of the selector that _should_ match but _doesn't, _but learning to use the built-in debugging tools in your browser will make it much more efficient than blindly changing code in your html and css files to find a combination that works. 
 
