@@ -301,9 +301,23 @@ Debugging selectors is still challenging, because nothing can provide an explana
 
 ### CSS Styling
 
-The Cascading Style Sheets language is  large and complex, as it must be to control what amounts to a complete typesetting system.  Whole books can and have been written about it.  Nonetheless a lot can be accomplished with just a few basic features and enough understanding of the basic approach to find description of additional features in online references.  We introduce two main kinds of CSS styling:  Text styling \(typefaces, sizing, and colors\) and layout. 
+The Cascading Style Sheets language is  large and complex, as it must be to control what amounts to a complete typesetting system.  Whole books can and have been written about it.  Nonetheless a lot can be accomplished with just a few basic features and enough understanding of the basic approach to find description of additional features in online references.  We introduce two main kinds of CSS styling:  Text styling \(typefaces, sizing, and colors\) and layout.
 
 ### CSS Text Styling
+
+A _font_ is a typeface  with a particular set of parameters including size, weight, and variant.  For example, Times New Roman is a typeface that may be set at size 12pt, semi-bold, italic.   The distinction between a typeface and a font is often fuzzy, but it will be important to us here because CSS allows us to choose a typeface and separately choose other characteristics, and a property that is inherited from one element \(say, a typeface selected for a whole paragraph\) can interact with an explicitly set property \(like a weight or variation set in a &lt;span&gt; element within the paragraph\).  
+
+Since the actual rendering of characters in a font will take place in the browser, we must face a complication that does not often arise in typesetting for paper media.  If we were typesetting a paper document in a word processor, we would seldom choose a typeface that we did not have installed, although someone might email us a document file that called for typefaces we do not have.  In web documents, there is a much greater chance that the typefaces available to us while composing the document are not available to the user's browser.  CSS addresses this by allowing us to specify a _font family_ that includes multiple, alternative typefaces.  For example, we might want text in paragraphs to be displayed in the Helvetica typeface if it is available, but we know that Arial was basically a Helvetica clone for Windows, and if neither of those are available we could settle for any sans serif face.  We might specify 
+
+```
+p { font-family: Helvetica, Arial, sans-serif; }
+```
+
+If the name of a typeface includes spaces, we can put it in quotes: 
+
+```
+p { font-family: Helvetica, "Trebuchet MS", sans-serif;}
+```
 
 
 
