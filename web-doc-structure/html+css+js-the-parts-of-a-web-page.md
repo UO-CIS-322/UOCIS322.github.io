@@ -297,9 +297,9 @@ Fortunately all the common browsers provide debugger support for determining whi
 
 ![](img/firefox-style-inspector.png)
 
-Debugging selectors is still challenging, because nothing can provide an explanation of the selector that _should_ match but _doesn't, _but learning to use the built-in debugging tools in your browser will make it much more efficient than blindly changing code in your html and css files to find a combination that works. 
+Debugging selectors is still challenging, because nothing can provide an explanation of the selector that _should_ match but \_doesn't, \_but learning to use the built-in debugging tools in your browser will make it much more efficient than blindly changing code in your html and css files to find a combination that works.
 
-### CSS Styling
+### CSS Styling: Layout
 
 Page layout: The box model   \(include &lt;div class=...&gt;\)
 
