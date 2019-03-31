@@ -305,19 +305,23 @@ The Cascading Style Sheets language is  large and complex, as it must be to cont
 
 ### CSS Text Styling
 
-A _font_ is a typeface  with a particular set of parameters including size, weight, and variant.  For example, Times New Roman is a typeface that may be set at size 12pt, semi-bold, italic.   The distinction between a typeface and a font is often fuzzy, but it will be important to us here because CSS allows us to choose a typeface and separately choose other characteristics, and a property that is inherited from one element \(say, a typeface selected for a whole paragraph\) can interact with an explicitly set property \(like a weight or variation set in a &lt;span&gt; element within the paragraph\).  
+A _font_ is a typeface  with a particular set of parameters including size, weight, and variant.  For example, Times New Roman is a typeface that may be set at size 12pt, semi-bold, italic.   The distinction between a typeface and a font is often fuzzy, but it will be important to us here because CSS allows us to choose a typeface and separately choose other characteristics, and a property that is inherited from one element \(say, a typeface selected for a whole paragraph\) can interact with an explicitly set property \(like a weight or variation set in a &lt;span&gt; element within the paragraph\).
 
-Since the actual rendering of characters in a font will take place in the browser, we must face a complication that does not often arise in typesetting for paper media.  If we were typesetting a paper document in a word processor, we would seldom choose a typeface that we did not have installed, although someone might email us a document file that called for typefaces we do not have.  In web documents, there is a much greater chance that the typefaces available to us while composing the document are not available to the user's browser.  CSS addresses this by allowing us to specify a _font family_ that includes multiple, alternative typefaces.  For example, we might want text in paragraphs to be displayed in the Helvetica typeface if it is available, but we know that Arial was basically a Helvetica clone for Windows, and if neither of those are available we could settle for any sans serif face.  We might specify 
+Since the actual rendering of characters in a font will take place in the browser, we must face a complication that does not often arise in typesetting for paper media.  If we were typesetting a paper document in a word processor, we would seldom choose a typeface that we did not have installed, although someone might email us a document file that called for typefaces we do not have.  In web documents, there is a much greater chance that the typefaces available to us while composing the document are not available to the user's browser.  CSS addresses this by allowing us to specify a _font family_ that includes multiple, alternative typefaces.  For example, we might want text in paragraphs to be displayed in the Helvetica typeface if it is available, but we know that Arial was basically a Helvetica clone for Windows, and if neither of those are available we could settle for any sans serif face.  We might specify
 
 ```
 p { font-family: Helvetica, Arial, sans-serif; }
 ```
 
-If the name of a typeface includes spaces, we can put it in quotes: 
+If the name of a typeface includes spaces, we can put it in quotes:
 
 ```
 p { font-family: Helvetica, "Trebuchet MS", sans-serif;}
 ```
+
+We can specify the size of the text in points, in screen pixels,  or relative to surrounding text.  Pixels are rarely the best choice, because they depend on screen resolution.  Points are the standard unit used in traditional typography, One point is about 0.352 millimeters, or 1/72 inch.  A typical newspaper article might be set in a 10 point font on 12 point leading \(i.e., lines spaced 12 points apart, thus leaving approximately 1 point of whitespace between lines\).   
+
+Relative sizes can be in percent \(e.g., make this text 125% the size of text in the surrounding block\), simple steps like "large" or "small" or "larger" or "smaller"\),  or in units based on the size of a character.  Character based sizes are generally in "ex"  \(the height of the character x in the surrounding text\) or "em" \(the width of the character m in the surrounding text\).  Character based sizing is especially useful for setting the size of an image or a "box" like a sidebar.  For the size of characters in a text, usually we want to set a basic overall size for the whole page, and then make text sizes within the page relative to that base size.  This makes it easy to consistently make all the text on a page a little larger or smaller. 
 
 
 
