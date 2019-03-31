@@ -297,9 +297,15 @@ Fortunately all the common browsers provide debugger support for determining whi
 
 ![](img/firefox-style-inspector.png)
 
-Debugging selectors is still challenging, because nothing can provide an explanation of the selector that _should_ match but \_doesn't, \_but learning to use the built-in debugging tools in your browser will make it much more efficient than blindly changing code in your html and css files to find a combination that works.
+Debugging selectors is still challenging, because nothing can provide an explanation of the selector that _should_ match but _doesn't_, but learning to use the built-in debugging tools in your browser will make it much more efficient than blindly changing code in your html and css files to find a combination that works.
 
-### CSS Styling: Layout
+### CSS Styling
+
+The Cascading Style Sheets language is  large and complex, as it must be to control what amounts to a complete typesetting system.  Whole books can and have been written about it.  Nonetheless a lot can be accomplished with just a few basic features and enough understanding of the basic approach to find description of additional features in online references.  We introduce two main kinds of CSS styling:  Text styling \(typefaces, sizing, and colors\) and layout. 
+
+### CSS Text Styling
+
+
 
 Page layout: The box model   \(include &lt;div class=...&gt;\)
 
