@@ -323,7 +323,7 @@ We can specify the size of the text in points, in screen pixels,  or relative to
 
 Relative sizes can be in percent \(e.g., make this text 125% the size of text in the surrounding block\), simple steps like "large" or "small" or "larger" or "smaller"\),  or in units based on the size of a character.  Character based sizes are generally in "ex"  \(the height of the character x in the surrounding text\) or "em" \(the width of the character m in the surrounding text\).  Character based sizing is especially useful for setting the size of an image or a "box" like a sidebar.  For the size of characters in a text, usually we want to set a basic overall size for the whole page, and then make text sizes within the page relative to that base size.  This makes it easy to consistently make all the text on a page a little larger or smaller.
 
-For example, we could make the Helvetica typeface in 12 point the main font for a page, but override the color \(but no other features\) of main headers.  We could make a précis larger relative to surrounding text, indent it, and use a different typeface to set it off: 
+For example, we could make the Helvetica typeface in 12 point the main font for a page, but override the color \(but no other features\) of main headers.  We could make a précis larger relative to surrounding text, indent it, and use a different typeface to set it off:
 
 ```
 body { font-family: Helvetica, Arial, sans-serif;
@@ -359,7 +359,51 @@ way, often with humor.</p>
 
 The paragraph with the class parameter is then rendered in the overridden style:
 
-... \[ Zombie mashups article example here \]
+![](/web-doc-structure/img/zombie-mashup-precis.png)
+
+Since we did not specify a size for the h1 element, and since h1 elements are normally set in a size larger than the running text, this size has still been applied despite the change to its color.  The paragraph marked with the "precis" class has been made larger and indented, but the following paragraph has not.  We can do something similar by designating some citations \(marked with the &lt;cite&gt; tag in html\) as movie titles: 
+
+```
+.movie-title {
+    font-weight: bold; 
+    color: rgb(219, 56, 24);
+}
+```
+
+Then we can combine the standard html &lt;cite&gt; tag with the class "movie-title": 
+
+```
+<p>Among the movies that have fused a zombie element with
+a more conventional movie about young people finding their
+way in the world, <cite class="movie-title">Shaun of the Dead</cite>
+and <cite class="movie-title">Night of the Comet</cite>
+stand out for deadpan humor.  Shaun famously
+<a href="https://www.youtube.com/watch?v=9qHAOY7C1go">uses his
+collection of vinyl records as weapons</a> while commenting on
+which records are expendable and which should be kept.  (Dire Straits?
+Throw it.)  In <cite class="movie-title">Night of the Comet</cite>,
+which influenced the later <cite class="movie-title">Buffy the Vampire
+Slayer</cite>, a recurring theme is the extent to which our world
+has been automated and goes on without our direct involvement. 
+</p>
+
+<p>Merely mashing up genres is not enough, though.  Fusion cuisine
+works because of parallels between culinary styles.  Yakisoba in place
+of fettucine?  Might be interesting.  Citrus in place of vinegar?
+Miso in place of parmesan?  It could work, but there is no guarantee.
+A notable flop among zombie mash-ups was <cite
+class="movie-title">Pride and Prejudice and Zombies</cite>, a cute
+concept that dulls after after a few battles.  Perhaps it
+could have been made to work with a deeper and more nuanced
+integration of the <cite>Pride and Prejudice</cite> setting with
+zombies as a critique of the English class system.  Simply using
+zombies as <em>them</em>, a generic threatening <em>other</em>, is not
+enough. </p>
+```
+
+Now the citations to movie titles get the specific treatment, but the citation to the novel _Pride and Prejudice_ does not: 
+
+![](/web-doc-structure/img/zombie-mashups-cites.png)
 
 Page layout: The box model   \(include &lt;div class=...&gt;\)
 
