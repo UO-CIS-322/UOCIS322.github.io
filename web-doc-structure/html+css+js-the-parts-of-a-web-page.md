@@ -323,7 +323,7 @@ We can specify the size of the text in points, in screen pixels,  or relative to
 
 Relative sizes can be in percent \(e.g., make this text 125% the size of text in the surrounding block\), simple steps like "large" or "small" or "larger" or "smaller"\),  or in units based on the size of a character.  Character based sizes are generally in "ex"  \(the height of the character x in the surrounding text\) or "em" \(the width of the character m in the surrounding text\).  Character based sizing is especially useful for setting the size of an image or a "box" like a sidebar.  For the size of characters in a text, usually we want to set a basic overall size for the whole page, and then make text sizes within the page relative to that base size.  This makes it easy to consistently make all the text on a page a little larger or smaller.
 
-For example, we could make the Helvetica typeface in 12 point the main font for a page, but override it with 12 point Times for an indented précis:
+For example, we could make the Helvetica typeface in 12 point the main font for a page, but override the color \(but no other features\) of main headers.  We could make a précis be larger than the 
 
 ```
 body { font-family: Helvetica, Arial, sans-serif;
@@ -331,12 +331,15 @@ body { font-family: Helvetica, Arial, sans-serif;
        font-weight: light;
      }
 
+h1 { color: rgb(219, 56, 24); }
+
 .precis {
     font-family:  Times, "Times New Roman", serif;
     font-style: italic;
     font-size: 125%; 
     margin-left:3em;   /* Width of 3 'm' in the current font. */ 
-    margin-right: 3em;
+    margin-right: 3em; 
+
 ```
 
 Then we can use the 'precis' class to identify one paragraph to be set in the special style:
@@ -355,9 +358,7 @@ genre or theme provides an opportunity to comment in a surprising
 way, often with humor.</p>
 ```
 
-The paragraph with the class parameter is then rendered in the overridden style: 
-
-
+The paragraph with the class parameter is then rendered in the overridden style:
 
 ... \[ Zombie mashups article example here \]
 
