@@ -1,0 +1,59 @@
+/* 
+ * Zombie mashups with a sidebar
+ */
+
+/* Set baseline for variation in the 'body' element, 
+ * which is the parent of all the other displayed content.
+ */
+
+body { font-family: Helvetica, Arial, sans-serif;
+       font-size: 12pt;
+       font-weight: light;
+     }
+
+
+/* Individual elements and classes are given as variants
+ *  on their parent element, which may in turn have inherited 
+ * attributes from 'body'. 
+ */
+
+h1 { color: rgb(219, 56, 24); }
+
+.precis {
+    font-family:  Times, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 125%; 
+    margin-left:3em;   /* Width of 3 'm' in the current font. */ 
+    margin-right: 3em; 
+}
+
+.movie-title {
+    font-weight: bold; 
+    color: rgb(219, 56, 24);
+}
+
+/* The main content and sidebar will be enclosed
+ * in 'div' elements with class 'content' and 'sidebar',
+ * respectively.
+ */
+
+div .content {  /* Matches only a 'div' element with class 'content' *
+    max-width: 80%;    /* No wider than 80% of the page. */
+    margin-left: 20%;  /* Leave room for the sidebar */ 
+    min-width: 40em;   /* No narrower than 40 characters,
+                        even if the sidebar must be stacked vertically. */
+    background-color: #3F7FBF; /* Another way to specify a color. */
+  }
+
+.sidebar {
+    float: left;     /* Float left if it will fit */ 
+    width: 15%;      /* To fit beside content column. */
+    min-width: 15em; /* Don't squeeze it too far!    */ 
+    padding-right: 2em; /* And don't jam it against content. */
+  }
+
+.sidebar h1,h2,h3 { /* Headings within the sidebar division */
+    font-size: 75%;   /* Smaller than normal */
+    font-color: black;  /* Yet another way to specify a color */
+ }
+
