@@ -11,10 +11,13 @@ body { font-family: Helvetica, Arial, sans-serif;
        font-weight: light;
      }
 
-/* Individual classes are given as variants on their 
- * parent element, which may in turn have inherited 
+
+/* Individual elements and classes are given as variants
+ *  on their parent element, which may in turn have inherited 
  * attributes from 'body'. 
- */ 
+ */
+
+h1 { color: rgb(219, 56, 24); }
 
 .precis {
     font-family:  Times, "Times New Roman", serif;
