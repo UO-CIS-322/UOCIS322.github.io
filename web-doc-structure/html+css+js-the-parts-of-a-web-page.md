@@ -361,7 +361,7 @@ The paragraph with the class parameter is then rendered in the overridden style:
 
 ![](/web-doc-structure/img/zombie-mashup-precis.png)
 
-Since we did not specify a size for the h1 element, and since h1 elements are normally set in a size larger than the running text, this size has still been applied despite the change to its color.  The paragraph marked with the "precis" class has been made larger and indented, but the following paragraph has not.  We can do something similar by designating some citations \(marked with the &lt;cite&gt; tag in html\) as movie titles: 
+Since we did not specify a size for the h1 element, and since h1 elements are normally set in a size larger than the running text, this size has still been applied despite the change to its color.  The paragraph marked with the "precis" class has been made larger and indented, but the following paragraph has not.  We can do something similar by designating some citations \(marked with the &lt;cite&gt; tag in html\) as movie titles:
 
 ```
 .movie-title {
@@ -370,7 +370,7 @@ Since we did not specify a size for the h1 element, and since h1 elements are no
 }
 ```
 
-Then we can combine the standard html &lt;cite&gt; tag with the class "movie-title": 
+Then we can combine the standard html &lt;cite&gt; tag with the class "movie-title":
 
 ```
 <p>Among the movies that have fused a zombie element with
@@ -401,11 +401,17 @@ zombies as <em>them</em>, a generic threatening <em>other</em>, is not
 enough. </p>
 ```
 
-Now the citations to movie titles get the specific treatment, but the citation to the novel _Pride and Prejudice_ does not: 
+Now the citations to movie titles get the specific treatment, but the citation to the novel _Pride and Prejudice_ does not:
 
 ![](/web-doc-structure/img/zombie-mashups-cites.png)
 
-Page layout: The box model   \(include &lt;div class=...&gt;\)
+### Page Layout in CSS
+
+We use style sheets not only to format the text on a page, but also to lay out the page itself.  In an organization large enough to have specialists in graphical design and document design, the page layout as well as many formatting details are likely to be designed by specialists.   When specialists are not available, we often start from a standard style \(e.g., one of the many open source designs available from the [Open Source Web Design](http://oswd.org) community\).  In either case, though, software developers must understand the mechanics of page layout to use the provided styles competently and to troubleshoot them when the effects are surprising. 
+
+Approaches to page layout have evolved with the web.  In the bad old days, before CSS provided sufficient control of layout, many web sites used designs based on html tables.   Table-based layout was supplanted by CSS controls soon after they were introduced, but designers struggled in particular to create multi-column page layouts that adjusted in robust ways to changes in window size, and especially to be "responsive" to the formatting needs of  mobile devices with small screens.  Two new options were introduced with CSS-3:  Grid-based design \(a widely used approach for paper document design\) and row- and column-based "flexible box" design.  We illustrate with the flexible box model. 
+
+
 
 Dimensions: As pixels, as fractions, as characters
 
