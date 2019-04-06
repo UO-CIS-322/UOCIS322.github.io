@@ -411,21 +411,21 @@ We use style sheets not only to format the text on a page, but also to lay out t
 
 Approaches to page layout have evolved with the web.  In the bad old days, before CSS provided sufficient control of layout, many web sites used designs based on html tables.   Table-based layout was supplanted by CSS controls soon after they were introduced, but designers struggled in particular to create multi-column page layouts that adjusted in robust ways to changes in window size, and especially to be "responsive" to the formatting needs of  mobile devices with small screens.  Two new options were introduced with CSS-3:  Grid-based design \(a widely used approach for paper document design\) and row- and column-based "flexible box" design.  We illustrate with the flexible box model.
 
-Let us suppose we want a navigational sidebar to the left of the main document content, with a page header and footer that extends across the page.  
+Let us suppose we want a navigational sidebar to the left of the main document content, with a page header and footer that extends across the page.
 
 ![](/web-doc-structure/img/page-layout-normal.png)
 
-This layout may not work well if squeezed too far. If the page is too narrow, we want the navigation links to be stacked atop the page body. 
+This layout may not work well if squeezed too far. If the page is too narrow, we want the navigation links to be stacked atop the page body.
 
 ![](/web-doc-structure/img/page-layout-narrow.png)
 
-A window that is too wide may also present a problem.  To read text, muscles in the human eye must steer the field of vision from the end of one line to the beginning of the next.  These muscles have limited accuracy.  While several factors, including the white space between lines, affect the ability to make this move accurately, as a rule of thumb lines of text should not be more than about 50 to 60 characters in length \(about 30-50 em\).  When the page is wide enough for the main text column to exceed this width, we prefer to pad it on the right rather than extend the length of text lines. 
+A window that is too wide may also present a problem.  To read text, muscles in the human eye must steer the field of vision from the end of one line to the beginning of the next.  These muscles have limited accuracy.  While several factors, including the white space between lines, affect the ability to make this move accurately, as a rule of thumb lines of text should not be more than about 50 to 60 characters in length \(about 30-50 em\).  When the page is wide enough for the main text column to exceed this width, we prefer to pad it on the right rather than extend the length of text lines.
 
 ![](/web-doc-structure/img/page-layout-wide.png)
 
-We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted. 
+We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted.
 
-Flexible boxes, abbreviated "flex", provide layout in
+Flexible boxes, abbreviated "flex", provide layout in rows \(by default\) or columns.  
 
 Dimensions: As pixels, as fractions, as characters
 
