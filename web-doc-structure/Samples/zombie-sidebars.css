@@ -1,16 +1,67 @@
 /* 
- * Zombie mashups with a sidebar
+ * Zombie mashups with a sidebar and 
+ * dynamically adjusting widths. 
  */
 
-/* Set baseline for variation in the 'body' element, 
- * which is the parent of all the other displayed content.
- */
 
 body { font-family: Helvetica, Arial, sans-serif;
        font-size: 12pt;
-       font-weight: light;
      }
 
+/* The page has a heading and footing.  Between them, 
+ * there is a navigation sidebar and a main content section. 
+ */
+
+div.pagehead, div.pagefoot {  /* ',' means "or" */ 
+    background-color: rgb(250,200,255);
+}
+
+div.pagehead { font-size: 150%; }
+div.pagefoot { font-size: 75%;  }
+
+div.content {
+    display: flex;     /* Rows and columns */
+    flex-wrap: wrap;   /* Stack if too narrow */
+}
+
+div.content .sidebar {  /* Read as "navbar within content" */
+    padding: 1ex; 
+    background-color: rgb(240,240,240);
+    /* Width of section */
+    width: 15%;       /* Ideal, within limits ... */ 
+    max-width: 20em; 
+    min-width: 10em;  /* Wrap if it would be narrower */ 
+    flex-grow: 1;     /* Half as stretchy as main column */
+    flex-shrink: 2;   /* Twice as compressible as main column */ 
+}
+
+div.content .main-content {
+    padding-left: 1em;
+    padding-right: 1em; 
+    /* Ideal size, limits, and stretchiness */
+    width: 75%;
+    max-width: 40em;
+    min-width: 20em;
+    flex-grow: 2;
+    flex-shrink: 1;
+}
+
+/* Modified formatting per division */
+h1.page-title, div.pagefoot p  {
+    text-align:  center;
+    padding: 1ex;
+    margin-bottom: 0.5ex; 
+}
+
+div.sidebar h1  {
+    font-size: 100%;
+}
+
+div.sidebar ul {
+    /* Bullets flush to left margin */  
+    margin-left: 0;
+    padding-left: 1em; 
+}
 
 /* Individual elements and classes are given as variants
  *  on their parent element, which may in turn have inherited 
@@ -31,29 +82,4 @@ h1 { color: rgb(219, 56, 24); }
     font-weight: bold; 
     color: rgb(219, 56, 24);
 }
-
-/* The main content and sidebar will be enclosed
- * in 'div' elements with class 'content' and 'sidebar',
- * respectively.
- */
-
-div .content {  /* Matches only a 'div' element with class 'content' *
-    max-width: 80%;    /* No wider than 80% of the page. */
-    margin-left: 20%;  /* Leave room for the sidebar */ 
-    min-width: 40em;   /* No narrower than 40 characters,
-                        even if the sidebar must be stacked vertically. */
-    background-color: #3F7FBF; /* Another way to specify a color. */
-  }
-
-.sidebar {
-    float: left;     /* Float left if it will fit */ 
-    width: 15%;      /* To fit beside content column. */
-    min-width: 15em; /* Don't squeeze it too far!    */ 
-    padding-right: 2em; /* And don't jam it against content. */
-  }
-
-.sidebar h1,h2,h3 { /* Headings within the sidebar division */
-    font-size: 75%;   /* Smaller than normal */
-    font-color: black;  /* Yet another way to specify a color */
- }
 
