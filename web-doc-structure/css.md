@@ -1,6 +1,4 @@
-
-
-## Doing it in Style
+# Doing it in Style with CSS
 
 So far we haven't said anything about how to control colors, typefaces, page layout, etc.  In the early days of the web, these were controlled directly in HTML, with tags like &lt;center&gt; and even the notorious &lt;blink&gt;.   Page layouts were often produced by creating monstrous tables with cells for each section of the page.  Worse, to obtain visual effects that were beyond the power of HTML, many authors typeset fancy headings into images and placed those images in web pages in place of text.  You may imagine how well that worked for blind users who depend on screen readers.   We don't do that anymore.  We use style sheets coded in the _Cascading Style Sheet_ \(CSS\) instead.
 
@@ -223,7 +221,7 @@ A window that is too wide may also present a problem.  To read text, muscles in 
 
 We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted.
 
-Flexible boxes, abbreviated "flex", provide layout in rows \(by default\) or columns.  
+Flexible boxes, abbreviated "flex", provide layout in rows \(by default\) or columns.
 
 Dimensions: As pixels, as fractions, as characters
 
