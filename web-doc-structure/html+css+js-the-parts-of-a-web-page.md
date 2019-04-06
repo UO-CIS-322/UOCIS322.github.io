@@ -407,11 +407,15 @@ Now the citations to movie titles get the specific treatment, but the citation t
 
 ### Page Layout in CSS
 
-We use style sheets not only to format the text on a page, but also to lay out the page itself.  In an organization large enough to have specialists in graphical design and document design, the page layout as well as many formatting details are likely to be designed by specialists.   When specialists are not available, we often start from a standard style \(e.g., one of the many open source designs available from the [Open Source Web Design](http://oswd.org) community\).  In either case, though, software developers must understand the mechanics of page layout to use the provided styles competently and to troubleshoot them when the effects are surprising. 
+We use style sheets not only to format the text on a page, but also to lay out the page itself.  In an organization large enough to have specialists in graphical design and document design, the page layout as well as many formatting details are likely to be designed by specialists.   When specialists are not available, we often start from a standard style \(e.g., one of the many open source designs available from the [Open Source Web Design](http://oswd.org) community\).  In either case, though, software developers must understand the mechanics of page layout to use the provided styles competently and to troubleshoot them when the effects are surprising.
 
-Approaches to page layout have evolved with the web.  In the bad old days, before CSS provided sufficient control of layout, many web sites used designs based on html tables.   Table-based layout was supplanted by CSS controls soon after they were introduced, but designers struggled in particular to create multi-column page layouts that adjusted in robust ways to changes in window size, and especially to be "responsive" to the formatting needs of  mobile devices with small screens.  Two new options were introduced with CSS-3:  Grid-based design \(a widely used approach for paper document design\) and row- and column-based "flexible box" design.  We illustrate with the flexible box model. 
+Approaches to page layout have evolved with the web.  In the bad old days, before CSS provided sufficient control of layout, many web sites used designs based on html tables.   Table-based layout was supplanted by CSS controls soon after they were introduced, but designers struggled in particular to create multi-column page layouts that adjusted in robust ways to changes in window size, and especially to be "responsive" to the formatting needs of  mobile devices with small screens.  Two new options were introduced with CSS-3:  Grid-based design \(a widely used approach for paper document design\) and row- and column-based "flexible box" design.  We illustrate with the flexible box model.
+
+Let us suppose we want a navigational sidebar to the left of the main document content, with a page header and footer that extends across the page. 
 
 
+
+Flexible boxes, abbreviated "flex", provide layout in 
 
 Dimensions: As pixels, as fractions, as characters
 
