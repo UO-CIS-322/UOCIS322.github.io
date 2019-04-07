@@ -219,7 +219,35 @@ A window that is too wide may also present a problem.  To read text, muscles in 
 
 ![](/web-doc-structure/img/page-layout-wide.png)
 
-We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted.
+We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted.  Of course we'll need to indicate which parts of the html belong to the page heading, sidebar, and foot. 
+
+```
+<body>
+<div class="pagehead">
+    <h1 class="page-title">Zombie Mashups</h1>
+</div>
+  
+<div class="content">
+<div class="sidebar">
+  <h1>You may also enjoy</h1>
+  <!-- sidebar content here -->
+</div> <!-- sidebar -->
+
+<div class="main-content">
+  <!-- main content here -->
+</div> <!-- main-content -->
+</div> <!-- content -->
+
+<div class="pagefoot">
+  <p>Publisher accepts no responsibility for anything at all</p>
+</div>
+
+</body>
+</html>
+
+```
+
+In the CSS file we will 
 
 Flexible boxes, abbreviated "flex", provide layout in rows \(by default\) or columns.
 
