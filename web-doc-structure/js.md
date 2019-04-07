@@ -20,13 +20,13 @@ It's not Java, or even close,.
 
 Basic characteristics:  Untyped, dynamic, a bit functional;  delegation-based method calls
 
-Used always with extensive libraries, often with frameworks.  We'll use JQuery, but there are many bigger frameworks widely used \(Angular, React, ...\) and more appearing all the time. 
+Used always with extensive libraries, often with frameworks.  We'll use JQuery, but there are many bigger frameworks widely used \(Angular, React, ...\) and more appearing all the time.
 
-Basics: 
+Basics:
 
-Objects are like dicts; JSON is  an exchange format based on object literals \(but only a subset of them\). 
+Objects are like dicts; JSON is  an exchange format based on object literals \(but only a subset of them\).
 
-Typical use is to "listen" to a field and do something in another field. 
+Typical use is to "listen" to a field and do something in another field.
 
-
+Example?   Maybe color encoder? 
 
