@@ -246,7 +246,7 @@ We can easily specify a flexible box layout that dynamically achieves all three 
 </html>
 ```
 
-In the CSS file we will specify that the 'content' division is a flexible box 
+In the CSS file we will specify that the 'content' division is a flexible box
 
 ```
 div.content {
@@ -255,7 +255,7 @@ div.content {
 }
 ```
 
-The 'flex-wrap' declaration is necessary to let the second column "wrap" to be stacked below the sidebar if necessary.  When is it necessary?  We'll need to specify minimum widths for them ... and at the same time we can specify preferred width \(in %\), and maximum width \(in em, the unit we'll also use for the minimum\). 
+The 'flex-wrap' declaration is necessary to let the second column "wrap" to be stacked below the sidebar if necessary.  When is it necessary?  We'll need to specify minimum widths for them ... and at the same time we can specify preferred width \(in %\), and maximum width \(in em, the unit we'll also use for the minimum\).
 
 ```
 div.content .sidebar {  /* Read as "navbar within content" */
@@ -281,21 +281,21 @@ div.content .main-content {
 }
 ```
 
-We use the em unit \(width of character 'm'\) for minimum and maximum sizes, rather than pixels or percent, because readability is closely related to the size of characters.  If we change the size of the font, minimum and maximum widths specified in em will be adjusted to match.  
+We use the em unit \(width of character 'm'\) for minimum and maximum sizes, rather than pixels or percent, because readability is closely related to the size of characters.  If we change the size of the font, minimum and maximum widths specified in em will be adjusted to match.
 
-We have also specified flex-grow and flex-shrink to control how the column sizes change when they are between their minimum and maximum values.  In the example, we have chosen to make the main content column stretch twice as fast as the sidebar when the window is expanded, and to make the sidebar shrink twice as fast as the main content column when the window is narrowed below the ideal range ... but only until both have reached their minimum widths, at which point the row "wraps" and the sidebar becomes instead a vertical section: 
+We have also specified flex-grow and flex-shrink to control how the column sizes change when they are between their minimum and maximum values.  In the example, we have chosen to make the main content column stretch twice as fast as the sidebar when the window is expanded, and to make the sidebar shrink twice as fast as the main content column when the window is narrowed below the ideal range ... but only until both have reached their minimum widths, at which point the row "wraps" and the sidebar becomes instead a vertical section:
 
-![](/web-doc-structure/img/zombie-sidebar-packed-thumb.png) 
+![](/web-doc-structure/img/zombie-sidebar-packed-thumb.png)
 
-When both can fit at their ideal ratio, the page is laid out as shown above.  If we widen the browser window beyond the maximum width of both columns, padding is added on the right as shown below: 
+When both can fit at their ideal ratio, the page is laid out as shown above.  If we widen the browser window beyond the maximum width of both columns, padding is added on the right as shown below:
 
 ![](/web-doc-structure/img/zombie-sidebar-padded-thumb.png)
 
-And if the browser window becomes too narrow for the two columns at their respective minimum widths, the row wraps: 
+And if the browser window becomes too narrow for the two columns at their respective minimum widths, the row wraps:
 
 ![](/web-doc-structure/img/zombie-sidebar-stacked-thumb.png)
 
-The full source code for this page is available: [HTML](/web-doc-structure/Samples/zombie-sidebars.html "HTML source code for zombie mashups page") and [CSS](/web-doc-structure/Samples/zombie-sidebars.css "Style sheet for Zombie Mashups"). There are a couple of other features worth noting. First, we can write CSS selectors that combine elements like h1 and classes like page-title, and we can even select elements by the way they are nested.  For example, "div.content .sidebar" selects elements with class "sidebar" that are within division with class "sidebar": 
+The full source code for this page is available: [HTML](/web-doc-structure/Samples/zombie-sidebars.html "HTML source code for zombie mashups page") and [CSS](/web-doc-structure/Samples/zombie-sidebars.css "Style sheet for Zombie Mashups"). There are a couple of other features worth noting. First, we can write CSS selectors that combine elements like h1 and classes like page-title, and we can even select elements by the way they are nested.  For example, "div.content .sidebar" selects elements with class "sidebar" that are within division with class "sidebar":
 
 ```
 div.content .sidebar {  /* Read as "navbar within content" */
@@ -310,7 +310,7 @@ div.content .sidebar {  /* Read as "navbar within content" */
 }
 ```
 
-We can also give one selector to match more than one combination class, element, or combination.  A comma in a selector can be read as "or": 
+We can also give one selector to match more than one combination class, element, or combination.  A comma in a selector can be read as "or":
 
 ```
 h1.page-title, div.pagefoot p  {
@@ -320,5 +320,17 @@ h1.page-title, div.pagefoot p  {
 }
 ```
 
-The style above applies to an h1 element with class page-title, and applies also to a p \(paragraph\) element that appears within a division with class pagefoot.  
+The style above applies to an h1 element with class page-title, and applies also to a p \(paragraph\) element that appears within a division with class pagefoot.
+
+---
+
+### Where to learn more
+
+There are books and books and whole degree programs about designing documents that are attractive and effective in communicating information, and more books on achieving those designs with HTML and CSS.  The former field is called "information design".  Much of the published work is focused on visualization of quantitative data, but it is at least equally useful for a developer of end-user software \(on the web and in other media\) to become familiar with some basics of typography and readability.   One reasonable starting point is the [material design guidelines](https://material.io/design/color/text-legibility.html) distributed by Google.  \([Help us out:](mailto: michal@cs.uoregon.edu&subject=322-book typography intros) The authors of this text would appreciate recommendations of other good, relatively concise starting points with emphasis on fundamental principles of typographic design.\) 
+
+For reference and clear explanation of CSS, we recommend the [Mozilla Developer Network documentation](https://developer.mozilla.org/en-US/) available online, including the [clearest documentation of the flex-box layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) that we are aware of. 
+
+
+
+
 
