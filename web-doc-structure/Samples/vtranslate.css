@@ -1,0 +1,8 @@
+/* 
+ * Styles for line-by-line translation, to enable showing 
+ * or not showing the translated text. 
+ */
+
+.es { color: black; }
+.en { display: none; }
+.en .reveal { display: inline; }
