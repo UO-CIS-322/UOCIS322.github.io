@@ -219,14 +219,14 @@ A window that is too wide may also present a problem.  To read text, muscles in 
 
 ![](/web-doc-structure/img/page-layout-wide.png)
 
-We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted.  Of course we'll need to indicate which parts of the html belong to the page heading, sidebar, and foot. 
+We can easily specify a flexible box layout that dynamically achieves all three layouts as the size of the browser window is adjusted.  Of course we'll need to indicate which parts of the html belong to the page heading, sidebar, and foot.
 
 ```
 <body>
 <div class="pagehead">
     <h1 class="page-title">Zombie Mashups</h1>
 </div>
-  
+
 <div class="content">
 <div class="sidebar">
   <h1>You may also enjoy</h1>
@@ -244,14 +244,81 @@ We can easily specify a flexible box layout that dynamically achieves all three 
 
 </body>
 </html>
-
 ```
 
-In the CSS file we will 
+In the CSS file we will specify that the 'content' division is a flexible box 
 
-Flexible boxes, abbreviated "flex", provide layout in rows \(by default\) or columns.
+```
+div.content {
+    display: flex;     /* Rows and columns */
+    flex-wrap: wrap;   /* Stack if too narrow */
+}
+```
 
-Dimensions: As pixels, as fractions, as characters
+The 'flex-wrap' declaration is necessary to let the second column "wrap" to be stacked below the sidebar if necessary.  When is it necessary?  We'll need to specify minimum widths for them ... and at the same time we can specify preferred width \(in %\), and maximum width \(in em, the unit we'll also use for the minimum\). 
 
-Positioning: Relative and absolute
+```
+div.content .sidebar {  /* Read as "navbar within content" */
+    padding: 1ex; 
+    background-color: rgb(240,240,240);
+    /* Width of section */
+    width: 15%;       /* Ideal, within limits ... */ 
+    max-width: 20em; 
+    min-width: 10em;  /* Wrap if it would be narrower */ 
+    flex-grow: 1;     /* Half as stretchy as main column */
+    flex-shrink: 2;   /* Twice as compressible as main column */ 
+}
+
+div.content .main-content {
+    padding-left: 1em;
+    padding-right: 1em; 
+    /* Ideal size, limits, and stretchiness */
+    width: 75%;
+    max-width: 40em;
+    min-width: 20em;
+    flex-grow: 2;
+    flex-shrink: 1;
+}
+```
+
+We use the em unit \(width of character 'm'\) for minimum and maximum sizes, rather than pixels or percent, because readability is closely related to the size of characters.  If we change the size of the font, minimum and maximum widths specified in em will be adjusted to match.  
+
+We have also specified flex-grow and flex-shrink to control how the column sizes change when they are between their minimum and maximum values.  In the example, we have chosen to make the main content column stretch twice as fast as the sidebar when the window is expanded, and to make the sidebar shrink twice as fast as the main content column when the window is narrowed below the ideal range ... but only until both have reached their minimum widths, at which point the row "wraps" and the sidebar becomes instead a vertical section: 
+
+![](/web-doc-structure/img/zombie-sidebar-packed-thumb.png) 
+
+When both can fit at their ideal ratio, the page is laid out as shown above.  If we widen the browser window beyond the maximum width of both columns, padding is added on the right as shown below: 
+
+![](/web-doc-structure/img/zombie-sidebar-padded-thumb.png)
+
+And if the browser window becomes too narrow for the two columns at their respective minimum widths, the row wraps: 
+
+![](/web-doc-structure/img/zombie-sidebar-stacked-thumb.png)
+
+The full source code for this page is available: [HTML](/web-doc-structure/Samples/zombie-sidebars.html "HTML source code for zombie mashups page") and [CSS](/web-doc-structure/Samples/zombie-sidebars.css "Style sheet for Zombie Mashups"). There are a couple of other features worth noting. First, we can write CSS selectors that combine elements like h1 and classes like page-title, and we can even select elements by the way they are nested.  For example, "div.content .sidebar" selects elements with class "sidebar" that are within division with class "sidebar": 
+
+```
+div.content .sidebar {  /* Read as "navbar within content" */
+    padding: 1ex; 
+    background-color: rgb(240,240,240);
+    /* Width of section */
+    width: 15%;       /* Ideal, within limits ... */ 
+    max-width: 20em; 
+    min-width: 10em;  /* Wrap if it would be narrower */ 
+    flex-grow: 1;     /* Half as stretchy as main column */
+    flex-shrink: 2;   /* Twice as compressible as main column */ 
+}
+```
+
+We can also give one selector to match more than one combination class, element, or combination.  A comma in a selector can be read as "or": 
+
+```
+h1.page-title, div.pagefoot p  {
+    text-align:  center;
+    padding: 1ex;
+    margin-bottom: 0.5ex; 
+}
+```
+
+The style above applies to an h1 element with class page-title, and applies also to a p \(paragraph\) element that appears within a division with class pagefoot.  
 
