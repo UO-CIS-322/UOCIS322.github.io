@@ -1,0 +1,7 @@
+# Cruft from MacOS
+
+.DS_Store
+
+# Cruft from JetBrains IDEs
+
+.idea
