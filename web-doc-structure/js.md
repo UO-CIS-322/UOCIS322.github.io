@@ -6,6 +6,10 @@ There are some interactions that take place entirely within the browser, using o
 
 Javascript was introduced initially to provide interaction within the browser, without involving additional round trips to the server, and it is still used extensively for this purpose.  In addition, though, Javascript is now used extensively to communicate asynchronously with servers.  Asynchronous communication, in which the client \(browser\) continues interacting with the user while waiting for a response from the server, does not eliminate the latency of the request/response round trip cycle, but it makes  it less jarring because the user interaction is not stalled for that fraction of a second while waiting for a response.  We will look first at Javascript interaction within the browser, and then at the "AJAX" style of asynchronous interaction with a web server.
 
+## The DOM model:  A web page is a tree
+
+Scripts modify web pages, not as big blocks of text with tags, but as a tree in which tags identify nodes.  A pair of tags &lt;t&gt;..&lt;/t&gt; identify a subtree of element kind _t, _e.g., &lt;p&gt;Paragraph text &lt;span&gt;with a span&lt;/span&gt; in it&lt;/p&gt; is a "p" subtree with three children,  two of which are blocks of text and one of which is a "span" subtree.  The root node of the tree is called the document. Javascript listener functions can be attached to elements of 
+
 ## Scripts and events
 
 \[The basic idea:  Download scripts along wth pages.  Scripts triggered by events; can change the HTML or CSS.\]
@@ -28,5 +32,5 @@ Objects are like dicts; JSON is  an exchange format based on object literals \(b
 
 Typical use is to "listen" to a field and do something in another field.
 
-Example?   Maybe color encoder? 
+Example?   Maybe color encoder?
 
