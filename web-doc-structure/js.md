@@ -8,32 +8,32 @@ Javascript was introduced initially to provide interaction within the browser, w
 
 ## The language
 
-Javascript is widely reviled \(but sometimes also loved\) as a programming language.  As you have no doubt heard, it has a syntax that somewhat resembles Java, but is in many other ways completely different from Java. Javascript is a dynamically typed language, meaning _values_ have types but _variables_ do not \(more like Python than Java or C++ in this regard\).  Javascript also does not have a conventional class system like Java, C++, and Python; rather it uses a _delegation_ model like Self and Newtonscript, languages you are unlikely to have encountered.  A Javascript object is roughly like a hashmap in Java or a dict in Python.  Much of the time, for simple scripts, we can almost set the peculiarities of Javascript aside, but occasionally we will find that we must study its workings more deeply to find an effective way to do something. 
+Javascript is widely reviled \(but sometimes also loved\) as a programming language.  As you have no doubt heard, it has a syntax that somewhat resembles Java, but is in many other ways completely different from Java. Javascript is a dynamically typed language, meaning _values_ have types but _variables_ do not \(more like Python than Java or C++ in this regard\).  Javascript also does not have a conventional class system like Java, C++, and Python; rather it uses a _delegation_ model like Self and Newtonscript, languages you are unlikely to have encountered.  A Javascript object is roughly like a hashmap in Java or a dict in Python.  Much of the time, for simple scripts, we can almost set the peculiarities of Javascript aside, but occasionally we will find that we must study its workings more deeply to find an effective way to do something.
 
-One of the things that gives Javascript a very different "feel" from Java is that functions in Javascript are first-class objects, meaning they are values just like integers, strings, and floating-point numbers.  For example, we can assign a function to a variable: 
+One of the things that gives Javascript a very different "feel" from Java is that functions in Javascript are first-class objects, meaning they are values just like integers, strings, and floating-point numbers.  For example, we can assign a function to a variable:
 
 ```
 x = function(t) { return t + 1; }
 ```
 
-and having done so, we can assign that value to another variable, and then call it.  
+and having done so, we can assign that value to another variable, and then call it.
 
 ```
  y = x;
  y(3);
 ```
 
-If we enter the lines above into a Javascript interpreter, it will show us that y\(3\) returns 4.  
+If we enter the lines above into a Javascript interpreter, it will show us that y\(3\) returns 4.
 
-Many of the peculiarities of Javascript can be annoying or downright dangerous.  For example, semicolons are used as in Java to terminate statements, but if you omit a semicolon the Javascript interpreter will usually \(but not quite always!\) supply one implicitly, sometimes transforming one bug into a different bug in a way that will complicate debugging.  In some ways Javascript is a victim of rapid success. Javascript has been characterized as  the first draft of a pretty good scripting language.  Most new programming languages go through periods of instability and refinement before they achieve widespread adoption.   When Javascript was introduced, the need for a scripting language was so severe that it was widely adopted almost immediately, with the unfortunate consequence that it became very difficult to make changes that would break existing scripts.  Some refinements have made it into the language, and the current version ES6 has repaired some of the most egregious flaws of the original language \(e.g., by introducing variables with proper block scoping\), but many jagged edges remain for backward compatibility.   
+Many of the peculiarities of Javascript can be annoying or downright dangerous.  For example, semicolons are used as in Java to terminate statements, but if you omit a semicolon the Javascript interpreter will usually \(but not quite always!\) supply one implicitly, sometimes transforming one bug into a different bug in a way that will complicate debugging.  In some ways Javascript is a victim of rapid success. Javascript has been characterized as  the first draft of a pretty good scripting language.  Most new programming languages go through periods of instability and refinement before they achieve widespread adoption.   When Javascript was introduced, the need for a scripting language was so severe that it was widely adopted almost immediately, with the unfortunate consequence that it became very difficult to make changes that would break existing scripts.  Some refinements have made it into the language, and the current version ES6 has repaired some of the most egregious flaws of the original language \(e.g., by introducing variables with proper block scoping\), but many jagged edges remain for backward compatibility.
 
 There are many Javascript tutorials written for absolute beginners in programming.  [For experienced programmers, we can recommend the Javascript "reintroduction" from the Mozilla organization. ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 
 ## The libraries
 
-\[\[ Change this ... much of JQuery is now incorporated into Javascript. \]\]
+Javascript is often used with one or more substantial libraries like JQuery or complete frameworks like Node, Angular, or React.  These libraries and frameworks are extensive and almost like a programming language in themselves, raising the level of Javascript programming while also imposing their own particular style and conceptual model on scripts.  They evolve and are released rapidly, to the extent that the site "[https://dayssincelastjavascriptframework.com/](https://dayssincelastjavascriptframework.com/)" is probably not far from accurate: 
 
-Javascript is almost always used with one or more substantial libraries like JQuery or complete frameworks like Node, Angular, or React.  These libraries and frameworks are extensive and almost like a programming language in themselves, raising the level of Javascript programming while also imposing their own particular style and conceptual model on scripts.  In this chapter we'll use JQuery, which is rather basic compared to a large framework like Angular, but which also imposes fewer constraints on our applications.  JQuery is very widely used.  
+ In this chapter we'll use JQuery, which is rather basic compared to a large framework like Angular, but which also imposes fewer constraints on our applications.  JQuery is very widely used.
 
 Used always with extensive libraries, often with frameworks.  We'll use JQuery, but there are many bigger frameworks widely used \(Angular, React, ...\) and more appearing all the time.
 
@@ -43,15 +43,13 @@ Objects are like dicts; JSON is  an exchange format based on object literals \(b
 
 Typical use is to "listen" to a field and do something in another field.
 
-
-
 ## The DOM model:  A web page is a tree
 
-Scripts modify web pages, not as big blocks of text with tags, but as a tree in which tags identify nodes.  A pair of tags &lt;t&gt;..&lt;/t&gt; identify a subtree of element kind \_t, \_e.g., &lt;p&gt;Paragraph text &lt;span&gt;with a span&lt;/span&gt; in it&lt;/p&gt; is a "p" subtree with three children,  two of which are blocks of text and one of which is a "span" subtree.   You can view this tree as an outline in the 'inspector' window of the Firefox web developer tools, and in similar displays in the web development tools of other browsers. 
+Scripts modify web pages, not as big blocks of text with tags, but as a tree in which tags identify nodes.  A pair of tags &lt;t&gt;..&lt;/t&gt; identify a subtree of element kind \_t, \_e.g., &lt;p&gt;Paragraph text &lt;span&gt;with a span&lt;/span&gt; in it&lt;/p&gt; is a "p" subtree with three children,  two of which are blocks of text and one of which is a "span" subtree.   You can view this tree as an outline in the 'inspector' window of the Firefox web developer tools, and in similar displays in the web development tools of other browsers.
 
 ![](/web-doc-structure/img/firefox-show-zombie-dom-small.png)
 
-Javascript listener functions can be attached to elements of the DOM tree so that they will be triggered by events like clicks and mouse hovers,  and Javascript functions can  traverse and modify the content of the tree.   Javascript libraries like JQuery provide very convenient ways to search and traverse the DOM tree with "selector" patterns, e.g., `$(".precis")` to select all the DOM tree nodes with class "precis".  
+Javascript listener functions can be attached to elements of the DOM tree so that they will be triggered by events like clicks and mouse hovers,  and Javascript functions can  traverse and modify the content of the tree.   Javascript libraries like JQuery provide very convenient ways to search and traverse the DOM tree with "selector" patterns, e.g., `$(".precis")` to select all the DOM tree nodes with class "precis".
 
 ## Scripts and events
 
