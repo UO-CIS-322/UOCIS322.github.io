@@ -181,6 +181,32 @@ Although tedious to enter by hand, we could easily create a program to generate 
 
 Now the initial appearance of the page is all in Spanish:
 
+![](/web-doc-structure/img/nada-mas-es.png)
+
+We'll create another CSS class to reveal a span of English text.  If there are two CSS selectors that match an element, the more specific selector has priority, so we'll specify both the element type and the class to make the selector for revealing English more specific than the selector for hiding it, when the class `reveal` is applied to a `span` element. 
+
+```
+span.reveal { display: inline;
+	      font: italic; 
+	      color: rgb(150, 50, 50);
+	    }
+```
+
+Now all we need to do is to add the 'reveal' class to selected lines of English translation.  That's where the Javascript comes in. 
+
+We'll create the Javascript in a separate file `vtranslate.js`, and link it from the head section of our page: 
+
+```
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Neruda: Nada Mas</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="vtranslate.css">
+  <script src="vtranslate.js" ></script>
+</head>
+```
+
 
 
 The basic idea:  Download scripts along wth pages.  Scripts triggered by events; can change the HTML or CSS.\]
