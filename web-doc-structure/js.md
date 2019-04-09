@@ -25,28 +25,27 @@ and having done so, we can assign that value to another variable, and then call 
 
 If we enter the lines above into a Javascript interpreter, it will show us that y\(3\) returns 4.
 
-To emphasize that 'function \(\) { ... }' really is a function _value_ and not just a declaration, consider that I can also do the following: 
+To emphasize that 'function \(\) { ... }' really is a function _value_ and not just a declaration, consider that I can also do the following:
 
 ```
 x = function(k) { 
    y = k + 7; 
    return y; 
-}(8); 
+}(8);
 ```
 
-The statement above \(yes, it's a single statement\) will assign the value 15 to x.  Make sure you see why that is, because typical Javascript code is fairly easy to read once you do, but completely wacky until then. 
+The statement above \(yes, it's a single statement\) will assign the value 15 to x.  Make sure you see why that is, because typical Javascript code is fairly easy to read once you do, but completely wacky until then.
 
-Once you have internalized and gotten comfortable with the basic idea of functions as values in Javascript, you need just a few more foundation stones to grasp enough of the language to start writing useful code. One of these is that an 'object' is essentially like a Java hashmap or a Python dict, with a literal syntax close to Python's except that keys don't need to be quoted if they follow identifier syntax.  We'll illustrate with some interaction in a Javascript interpreter console: 
+Once you have internalized and gotten comfortable with the basic idea of functions as values in Javascript, you need just a few more foundation stones to grasp enough of the language to start writing useful code. One of these is that an 'object' is essentially like a Java hashmap or a Python dict, with a literal syntax close to Python's except that keys don't need to be quoted if they follow identifier syntax.  We'll illustrate with some interaction in a Javascript interpreter console:
 
 ```
 > my_obj = { "k1": "v1", k2: "v2", 
 ...          f: function() { return this.k1; }
 ... };
 { k1: 'v1', k2: 'v2', f: [Function: f] }
-
 ```
 
-Notice that key k2 is "bare", i.e., unquoted, because it is a valid identifier.  We can access object member values using either braces \[ \] or dot notation: 
+Notice that key k2 is "bare", i.e., unquoted, because it is a valid identifier.  We can access object member values using either braces \[ \] or dot notation:
 
 ```
 > my_obj.k1
@@ -55,14 +54,14 @@ Notice that key k2 is "bare", i.e., unquoted, because it is a valid identifier. 
 'v1'
 ```
 
-A member that is a function value can be used as a method, and when called using dot notation has access to the object through the 'this' variable: 
+A member that is a function value can be used as a method, and when called using dot notation has access to the object through the 'this' variable:
 
 ```
 > my_obj.f(); 
-'v1' 
+'v1'
 ```
 
-Javascript has objects that act like something like arrays in Java or lists in Python, but reveal their true nature when twisted: 
+Javascript has objects that act like something like arrays in Java or lists in Python, but reveal their true nature when twisted:
 
 ```
 > li = ["a", "b", 7]; 
@@ -93,7 +92,7 @@ a
 b
 ```
 
-But we can also use a more functional style: 
+But we can also use a more functional style:
 
 ```
 > li.forEach(function(el) { console.log(el); })
@@ -101,10 +100,9 @@ a
 b
 7
 whoa
-
 ```
 
-Scope in Javascript is a bit of a mess.  We can use 'let' to introduce a variable in the scope of the current block, 'var' to introduce a variable in scope of the current function, but if we assign to a variable for the first time using neither 'let' nor 'var' the scope will default to global, which is almost never what we want.  Consider: 
+Scope in Javascript is a bit of a mess.  We can use 'let' to introduce a variable in the scope of the current block, 'var' to introduce a variable in scope of the current function, but if we assign to a variable for the first time using neither 'let' nor 'var' the scope will default to global, which is almost never what we want.  Consider:
 
 ```
 > function litterbug(x) {
@@ -117,10 +115,9 @@ undefined
 16
 > z
 8
-
 ```
 
-We accidentally created z and q as global variables!  One way to prevent that mistake is to run Javascript in strict mode. 
+We accidentally created z and q as global variables!  One way to prevent that mistake is to run Javascript in strict mode.
 
 ```
 > function litterbug(k) {
@@ -145,7 +142,7 @@ Javascript is often used with one or more substantial libraries like JQuery or c
 
 ![](/web-doc-structure/img/days-since-last-js-framework.png)
 
-In this chapter we will use just the built-in functions provided by web browsers, including the document object model of the web page, described next.   If you pursue web development professionally, you are likely to spend at least as much time learning some Javascript framework as learning the Javascript language, but it is impossible for us to guess which one, and in fact it is quite likely to be one that doesn't yet exist as of this writing. 
+In this chapter we will use just the built-in functions provided by web browsers, including the document object model of the web page, described next.   If you pursue web development professionally, you are likely to spend at least as much time learning some Javascript framework as learning the Javascript language, but it is impossible for us to guess which one, and in fact it is quite likely to be one that doesn't yet exist as of this writing.
 
 ### The DOM model:  A web page is a tree
 
@@ -153,15 +150,15 @@ Scripts modify web pages, not as big blocks of text with tags, but as a tree in 
 
 ![](/web-doc-structure/img/firefox-show-zombie-dom-small.png)
 
-Javascript listener functions can be attached to elements of the DOM tree so that they will be triggered by events like clicks and mouse hovers,  and Javascript functions can  traverse and modify the content of the tree.   That is how we will make elements interactive. 
+Javascript listener functions can be attached to elements of the DOM tree so that they will be triggered by events like clicks and mouse hovers,  and Javascript functions can  traverse and modify the content of the tree.   That is how we will make elements interactive.
 
 ## Scripts and events
 
-Let us suppose we want to present a poem by Pablo Neruda for a student of Spanish literature.  The student may be an English speaker who is not yet fluent in Spanish, but we do not want to provide an English translation by default.  Rather, we want to let the student to attempt to comprehend the poem in Spanish, and to see one line at a time of English translation on request. 
+Let us suppose we want to present a poem by Pablo Neruda for a student of Spanish literature.  The student may be an English speaker who is not yet fluent in Spanish, but we do not want to provide an English translation by default.  Rather, we want to let the student to attempt to comprehend the poem in Spanish, and to see one line at a time of English translation on request.
 
-We could accomplish this interaction without Javascript.  We could treat each line as a link, so that when the student clicks a line of Spanish poetry, the browser sends a request to the server, which creates and returns a version of the page with some lines translated.  This interaction might take only a fraction of a second, but it would still be too slow.  
+We could accomplish this interaction without Javascript.  We could treat each line as a link, so that when the student clicks a line of Spanish poetry, the browser sends a request to the server, which creates and returns a version of the page with some lines translated.  This interaction might take only a fraction of a second, but it would still be too slow.
 
-Instead of interacting with the server each time the user asks to show or hide a line of translation, we can put all of the translated text in the original document, marking spans of the original Spanish text with class "es" and the translated English text "en". 
+Instead of interacting with the server each time the user asks to show or hide a line of translation, we can put all of the translated text in the original document, marking spans of the original Spanish text with class "es" and the translated English text "en".
 
 ```
   <p><span class="es">
@@ -175,14 +172,14 @@ Instead of interacting with the server each time the user asks to show or hide a
   </span></p>
 ```
 
-Although tedious to enter by hand, we could easily create a program to generate this html for interleaved Spanish and English text.   Initially we will simply hide all the English, using our style sheet: 
+Although tedious to enter by hand, we could easily create a program to generate this html for interleaved Spanish and English text.   Initially we will simply hide all the English, using our style sheet:
 
 ```
 .es { color: black; }
 .en { display: none; }
 ```
 
-Now the initial appearance of the page is all in Spanish: 
+Now the initial appearance of the page is all in Spanish:
 
 
 
