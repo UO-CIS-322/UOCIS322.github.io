@@ -3,8 +3,30 @@
  * or not showing the translated text. 
  */
 
+body {
+    font-family: Avenir, "Myriad Pro", "Myriad",
+                 "Lucida Grande", "Lucida Sans Unicode",
+                 Tahoma, Geneva, sans-serif;
+    background-color: rgb(221, 234, 255);
+    padding-left: 10%; 
+}
+
 .es { color: black; }
 .en { display: none; }
+
+/* span.reveal is more specific than .en and therefore 
+ * takes precedence in CSS. A tag with classes 'en' and 'reveal' 
+ * will take the 'display' attribute from span.reveal. 
+ */
 span.reveal { display: inline;
-	      color: red;
+	      font-style: italic; 
+	      color: rgb(150, 50, 50);
 	    }
+
+.attribution {
+    padding-top: 8ex;
+    font-size: smaller; 
+}
+
+.attribution .author {
+    font-family: 
