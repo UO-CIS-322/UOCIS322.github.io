@@ -183,18 +183,18 @@ Now the initial appearance of the page is all in Spanish:
 
 ![](/web-doc-structure/img/nada-mas-es.png)
 
-We'll create another CSS class to reveal a span of English text.  If there are two CSS selectors that match an element, the more specific selector has priority, so we'll specify both the element type and the class to make the selector for revealing English more specific than the selector for hiding it, when the class `reveal` is applied to a `span` element. 
+We'll create another CSS class to reveal a span of English text.  If there are two CSS selectors that match an element, the more specific selector has priority, so we'll specify both the element type and the class to make the selector for revealing English more specific than the selector for hiding it, when the class `reveal` is applied to a `span` element.
 
 ```
 span.reveal { display: inline;
-	      font: italic; 
-	      color: rgb(150, 50, 50);
-	    }
+          font: italic; 
+          color: rgb(150, 50, 50);
+        }
 ```
 
-Now all we need to do is to add the 'reveal' class to selected lines of English translation.  That's where the Javascript comes in. 
+Now all we need to do is to add the 'reveal' class to selected lines of English translation.  That's where the Javascript comes in.
 
-We'll create the Javascript in a separate file `vtranslate.js`, and link it from the head section of our page: 
+We'll create the Javascript in a separate file `vtranslate.js`, and link it from the head section of our page:
 
 ```
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
