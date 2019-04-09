@@ -207,13 +207,43 @@ We'll create the Javascript in a separate file `vtranslate.js`, and link it from
 </head>
 ```
 
+In the Javascript file, we'll write an event handling function to "toggle" the "reveal" class for a node.  To "toggle" in this case means to insert the class if it is absent, and delete it if it is present.  Note that our event handler function traverses from a span node with class es to its first sibling node with class en, toggling that sibling if it is found: 
 
+```
+function toggle_translation(event) {
+    // The 'this' object is set automatically in event handlers
+    var sib = this.nextElementSibling;
+    while (sib) {  // Just in case it isn't the very next sibling
+	css_classes = sib.classList;
+	if (css_classes.contains("en")) {
+	    css_classes.toggle("reveal");
+	    return;
+	}
+	sib = sib.nextElementSibling; 
+    }
+    alert("Didn't find translation");
+    return;
+}
+```
 
-The basic idea:  Download scripts along wth pages.  Scripts triggered by events; can change the HTML or CSS.\]
+The properties `nextElementSibling` and `classList` and the method `toggle` are parts of the DOM API in modern browsers.  They are not a core part of the Javascript language, but all current browsers provide them as part of their built-in API for web pages. 
 
-The DOM model:  Your HTML is a tree.
+So far so good, but this event handler won't do us any good until we attach it to the spans of Spanish text.  So: 
 
-## Example?   Maybe color encoder?
+```
+document.addEventListener("DOMContentLoaded", function() {  
+    let es_elements = document.querySelectorAll(".es");
+    for (let i=0; i < es_elements.length; ++i) {
+	es_elements[i].addEventListener('click', toggle_translation);
+    }
+});
+```
+
+This code actually adds an event handler to the top-level document object, which represents the web page as a whole.  This handler is triggered when the browser has completely loaded the page and built the DOM.  If we didn't wait for the DOM tree to be completely built, we might miss some of the Spanish text!  Once the DOM is built, we select all of the Spanish spans with a single call to `document.querySelectorAll`, then loop through them to attach the `toggle_translation` handler to each one. 
+
+Now, if we click a line of the Spanish text, the `toggle_translation` handler  attaches \(or removes\) the `reveal` class, causing it to match \(or not\) the `span.reveal` selector in our CSS file, giving us the desired effect: 
+
+![](/web-doc-structure/img/nada-mas-tr.png)
 
 
 
