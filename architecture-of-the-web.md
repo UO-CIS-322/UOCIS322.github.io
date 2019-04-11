@@ -1,6 +1,7 @@
 # Internet
 
 * Internet is universal - network of networks
+
 * No centralized authority - uses TCP/IP to connect all devices worldwide
 
 * Carries a number of resources, information, and services.
