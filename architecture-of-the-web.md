@@ -1,4 +1,4 @@
-Internet
+# Internet
 
 * Internet is universal - network of networks
 * No centralized authority - uses TCP/IP to connect all devices worldwide
