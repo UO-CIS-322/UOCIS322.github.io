@@ -5,3 +5,8 @@
 # Cruft from JetBrains IDEs
 
 .idea
+
+# Cruft from Python
+
+__pycache__
+*.pyc
