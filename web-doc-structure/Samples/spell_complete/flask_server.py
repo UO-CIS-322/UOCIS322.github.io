@@ -53,8 +53,11 @@ def suggest_completions():
     app.logger.debug(f"The request object: {request}")
     app.logger.debug(f"The arguments: '{request.args}")
     if prefix:
+        app.logger.debug(f"Looking up '{prefix}' in {len(WORDLIST)} words")
         completions = get_completions(prefix, 5)
+        app.logger.debug(f"Found completions {completions}")
     else:
+        app.logger.debug("Didn't have a prefix to look up")
         completions = []
     return jsonify(suggestions=completions)
 
@@ -79,7 +82,7 @@ def load_wordlist():
 
 def get_completions(prefix: str, max_completions: 5) -> List[str]:
     global WORDLIST
-    if WORDLIST is None:
+    if not WORDLIST: 
         load_wordlist()
     # Standard binary search until we succeed or fail; then
     # whether we succeed or fail, the next few words could be

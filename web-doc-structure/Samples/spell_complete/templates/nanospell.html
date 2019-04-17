@@ -14,23 +14,26 @@
     <input id="word" name="word" type="text" width="25"
       autocomplete="off"  autofocus />
   </form>
-  <p id="sugestions"></p>
+  <p id="suggestions"></p>
 
 <script>
     var the_entry_field = document.querySelector("#word");
     // Although we typically place scripts in separate files,
     // we can write small scripts specific to a page
     // in the page, wrapped in a 'script' element.
-    function be_helpful(event) {
+
+function be_helpful(event) {
         let the_prefix = the_entry_field.value;
         console.log("Got prefix: " + the_prefix );
         // Note we are using a relative url:  The request will
         // go the same server that the page came from
-        fetch('/_suggest_completions',
-            {body: JSON.stringify({prefix: the_prefix}) , mode: "no-cors" } )
-            .then(function(data) { console.log(JSON.stringify(data))})
-
-    }
+        jQuery.get('/_suggest_completions',
+                  { "prefix": the_prefix },
+                  function(data) {
+		      console.log(JSON.stringify(data));
+		      $("#suggestions").text(JSON.stringify(data));
+		  }); 
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     let the_form_entry  = document.querySelector("#word");
