@@ -14,31 +14,47 @@
     <input id="word" name="word" type="text" width="25"
       autocomplete="off"  autofocus />
   </form>
-  <p id="suggestions"></p>
+  <div id="suggestions"></div>
 
+ <!-- A script that is relatively independent of page content
+   -- should be in a separate file.  A script that refers to
+   -- items on a page (e.g., #entry and #suggestions on this page)
+   -- is best included in the same page.
+   -->
 <script>
     var the_entry_field = document.querySelector("#word");
-    // Although we typically place scripts in separate files,
-    // we can write small scripts specific to a page
-    // in the page, wrapped in a 'script' element.
 
-function be_helpful(event) {
+    /** Insert suggested completions into the the paragraph
+     * with identifier #suggestions
+     * @param suggestions a list of strings
+     */
+    function insert_suggestions(suggestions) {
+        let the_div = jQuery("#suggestions");
+        // Clear the old content
+        the_div.text("");
+        // Insert each suggestion
+        suggestions.forEach( function (s) {
+            the_div.append(`<p>${s}</p>`);
+        });
+    }
+
+    /** Ask the server for suggested completions of a word. */
+    function be_helpful(event) {
         let the_prefix = the_entry_field.value;
         console.log("Got prefix: " + the_prefix );
-        // Note we are using a relative url:  The request will
-        // go the same server that the page came from
+        //  The request will go the same server that the page came from
         jQuery.get('/_suggest_completions',
                   { "prefix": the_prefix },
                   function(data) {
-		      console.log(JSON.stringify(data));
-		      $("#suggestions").text(JSON.stringify(data));
-		  }); 
-}
+                    insert_suggestions(data.suggestions);
+                  }
+        );
+    }
 
-document.addEventListener("DOMContentLoaded", function() {
-    let the_form_entry  = document.querySelector("#word");
-    the_form_entry.addEventListener('input', be_helpful); // Triggers on changes as user types
-    });
+    /** Attach the 'be_helpful' listener to the input field. */
+    jQuery(document).ready(function(ev) {
+                   jQuery("#word").keyup(be_helpful);
+                 });
 
 </script>
 </body>
