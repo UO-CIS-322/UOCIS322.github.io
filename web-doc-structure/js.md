@@ -247,15 +247,11 @@ Now, if we click a line of the Spanish text, the `toggle_translation` handler  a
 
 ## Updating the page with Ajax
 
-The interaction we have enabled so far takes place completely within the browser; the web server is not involved.  What if we need to obtain some information from a database, or use a library or program that is not available on the browser side?  Of course we could send a request and build a whole new page, but that would be too slow for some interactions.   We need middle ground:  Exchanging new information with the server, but without blocking other user actions while the page refreshes. 
+The interaction we have enabled so far takes place completely within the browser; the web server is not involved.  What if we need to obtain some information from a database, or use a library or program that is not available on the browser side?  Of course we could send a request and build a whole new page, but that would be too slow for some interactions.   We need middle ground:  Exchanging new information with the server, but without blocking other user actions while the page refreshes.
 
-We can't prevent the latency of sending a request to the server and receiving a response go away, but we can make it less annoying by making the communication asynchronous:  We send the request, allow the user to continue interacting, and perform some action with the response when it arrives.  We could even have multiple requests "in flight" at the same time.  The action we take upon receiving a response from the server should not be too disruptive.  We may add or change some content on the page, but we should not redraw the whole page while the user is interacting.   This style of server interaction is called "Ajax", for "asynchronous javascript and XML", although today the data sent by the client-side javascript and the response received from the server is usually encoded in javascript object notation \(JSON\) rather than XML. 
+We can't prevent the latency of sending a request to the server and receiving a response go away, but we can make it less annoying by making the communication asynchronous:  We send the request, allow the user to continue interacting, and perform some action with the response when it arrives.  We could even have multiple requests "in flight" at the same time.  The action we take upon receiving a response from the server should not be too disruptive.  We may add or change some content on the page, but we should not redraw the whole page while the user is interacting.   This style of server interaction is called "Ajax", for "asynchronous javascript and XML", although today the data sent by the client-side javascript and the response received from the server is usually encoded in javascript object notation \(JSON\) rather than XML.
 
-We will illustrate the Ajax approach with a tiny spelling helper.  As the user begins typing a word, the spelling helper application provides a list of up to five possible completions: 
+We will illustrate the Ajax approach with a tiny spelling helper.  As the user begins typing a word, the spelling helper application provides a list of up to five possible completions:
 
-
-
-
-
-
+![](/web-doc-structure/img/nanospell-0.png)![](/web-doc-structure/img/nanospell-2.png)![](/web-doc-structure/img/nanospell-1.png)
 
