@@ -259,9 +259,13 @@ We want to provide the possible word completions keystroke-by-keystroke:  Each t
 
 Two aspects of this approach avoid the annoying delays and disruptions of a complete page refresh.  The first, and most important, is that the request will be asynchronous:  Even if the user presses more keys before a response arrives from the server, the input field continues to receive and display the input characters, and eventually the last response is displayed.  Second, the area for displaying responses is updated without refreshing the whole page.
 
-We will focus first on the browser side of this interaction, then look briefly at how it is handled by the server. 
+We will focus first on the browser side of this interaction, then look briefly at how it is handled by the server.
 
 ### Triggering action on keystrokes
+
+We will attach an event listener to the input field of nanospell.html much as we attached listeners to lines of Spanish poetry in the earlier example, except that this time we will use the jQuery Javascript library.  We load the library \(requesting it from the server\) in the 'head' part of the web page: 
+
+
 
 \(like the last, but using jQuery\)
 
