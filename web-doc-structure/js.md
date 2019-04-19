@@ -245,6 +245,10 @@ Now, if we click a line of the Spanish text, the `toggle_translation` handler  a
 
 ![](img/nada-mas-tr.png)
 
+### Sample Source Code
+
+The source code for the page with Neruda's poem is in the [Sample Source Code](#sample-source-code "Sample source code to illustrate the parts of a web page") directory.  The content of the poem \(with English translation\) is in 
+
 ## Updating the page with Ajax
 
 The interaction we have enabled so far takes place completely within the browser; the web server is not involved.  What if the interaction we want requires some information from a database, or a library or program that is not available on the user's computer?    Of course we could send a request and build a whole new page, but that would defeat the purpose of Javascript and be too slow for some interactions.   We need middle ground:  Exchanging new information with the server but remaining responsive by not blocking other user actions.
@@ -276,7 +280,7 @@ We will attach an event listener to the input field of nanospell.html much as we
 </head>
 ```
 
-In this example we are loading a local copy of the jQuery library.  We could instead have loaded it from a remote content delivery network \(CDN\).  If the same library is used by several different applications, using a CDN can sometimes allow the browser to cache and reuse a library script that another page has loaded.  However, loading scripts from other servers can open an application to a class of security vulnerabilities called cross-site scripting attacks, so we include a digital signature to ensure that the version of the library we obtain has not been modified.  This of course means that we must reference a particular version of the library, rather than indicating we want whichever version is most up-to-date: 
+In this example we are loading a local copy of the jQuery library.  We could instead have loaded it from a remote content delivery network \(CDN\).  If the same library is used by several different applications, using a CDN can sometimes allow the browser to cache and reuse a library script that another page has loaded.  However, loading scripts from other servers can open an application to a class of security vulnerabilities called cross-site scripting attacks, so we include a digital signature to ensure that the version of the library we obtain has not been modified.  This of course means that we must reference a particular version of the library, rather than indicating we want whichever version is most up-to-date:
 
 ```
 <script
@@ -285,7 +289,7 @@ In this example we are loading a local copy of the jQuery library.  We could ins
   crossorigin="anonymous"></script>
 ```
 
-The body of our page will contain an HTML form.  The input field will be labeled "entry" so that we can refer to it from Javascript. 
+The body of our page will contain an HTML form.  The input field will be labeled "entry" so that we can refer to it from Javascript.
 
 ```
 <body>
@@ -298,28 +302,28 @@ The body of our page will contain an HTML form.  The input field will be labeled
 </body>
 ```
 
-We will create an empty "div" element into which our script can insert suggestions, again giving it an identifier so that we can refer to it in our script. 
+We will create an empty "div" element into which our script can insert suggestions, again giving it an identifier so that we can refer to it in our script.
 
 ```
   <div id="suggestions"></div>
 ```
 
-In our poetry translation application, we used `document.addEventListener` to attach listener functions to elements of the page.  With jQuery we can do the same, a little more concisely.   We want to attach the event listener to the input field we called "entry".  The listener will respond to "key up" events, i.e., it will respond each time the user presses and then releases a key: 
+In our poetry translation application, we used `document.addEventListener` to attach listener functions to elements of the page.  With jQuery we can do the same, a little more concisely.   We want to attach the event listener to the input field we called "entry".  The listener will respond to "key up" events, i.e., it will respond each time the user presses and then releases a key:
 
 ```
 <script>
   // ... more here ... 
-  
+
      jQuery(document).ready(function(ev) {
                    jQuery("#word").keyup(be_helpful);
                  });
-                 
+
 </script>
 ```
 
-The outer call to the jQuery listens for the document DOM to be fully loaded.  When the document is loaded, the inner call to `jQuery("#word")` selects elements with identifier "word", i.e., the input field in our form, and attaches to it a function `be_helpful` to be called on each keyup event. 
+The outer call to the jQuery listens for the document DOM to be fully loaded.  When the document is loaded, the inner call to `jQuery("#word")` selects elements with identifier "word", i.e., the input field in our form, and attaches to it a function `be_helpful` to be called on each keyup event.
 
-The function `be_helpful` sends the request to the server.  Since this is an *asynchronous* communication, it does not block while waiting for the reply.  Instead, it schedules another function, `insert_suggestions`, to handle the reply when it arrives: 
+The function `be_helpful` sends the request to the server.  Since this is an _asynchronous_ communication, it does not block while waiting for the reply.  Instead, it schedules another function, `insert_suggestions`, to handle the reply when it arrives:
 
 ```
     /** Ask the server for suggested completions of a word. */
@@ -333,68 +337,59 @@ The function `be_helpful` sends the request to the server.  Since this is an *as
     }
 ```
 
-The data to be transmitted to the server is provided as a Javascript object: 
+The data to be transmitted to the server is provided as a Javascript object:
 
 ```
 { "prefix": this.value }
 ```
 
-The `jQuery.get` method (a shorthand form of `jQuery.ajax`) encodes the object as a parameter in the URL.  The response comes in the form, not of HTML, but another Javascript object represented by Javascript object notation (JSON), e.g., 
+The `jQuery.get` method \(a shorthand form of `jQuery.ajax`\) encodes the object as a parameter in the URL.  The response comes in the form, not of HTML, but another Javascript object represented by Javascript object notation \(JSON\), e.g.,
 
 ```
 {"suggestions": ["we", "weak", "weaken", "weakener", "weakfish", "weak-kneed"]}
 ```
 
-### Updating the Page 
+### Updating the Page
 
-Our function `be_helpful` schedules an anonymous function to handle the response, 
-and that function in turn calls `insert_suggestions` to update the page.  
+Our function `be_helpful` schedules an anonymous function to handle the response,   
+and that function in turn calls `insert_suggestions` to update the page.
 
-```
-   /** Insert suggested completions into the the paragraph
-     * with identifier #suggestions
-     */
-    function insert_suggestions(suggestions) {
-        let the_div = jQuery("#suggestions");
-        // Clear the old content
-        the_div.text("");
-        // Insert each suggestion
-        suggestions.forEach( function (s) {
-            the_div.append(`<p>${s}</p>`);
-        });
-    }
-```
-
-`insert_suggestions` begins by using Query to select the document div element with identify "suggestions".  It clears the div by setting its text to the empty string,
-then inserts each suggestions. We could have written a loop in a more familiar form: 
-
-```
-       for (let i=0; i < suggestions.length; ++i) {
-            the_div.append(`<p>${suggestions[i]}</p>`);
+       /** Insert suggested completions into the the paragraph
+         * with identifier #suggestions
+         */
+        function insert_suggestions(suggestions) {
+            let the_div = jQuery("#suggestions");
+            // Clear the old content
+            the_div.text("");
+            // Insert each suggestion
+            suggestions.forEach( function (s) {
+                the_div.append(`<p>${s}</p>`);
+            });
         }
-```
 
-We have instead chosen a more "functional" form, using the `forEach` method of 
-Javascript arrays and passing it a function to evaluate on each element: 
+`insert_suggestions` begins by using Query to select the document div element with identify "suggestions".  It clears the div by setting its text to the empty string,  
+then inserts each suggestions. We could have written a loop in a more familiar form:
 
-```
-        suggestions.forEach( function (s) {
-           the_div.append(`<p>${s}</p>`);
-        });
-```
+           for (let i=0; i < suggestions.length; ++i) {
+                the_div.append(`<p>${suggestions[i]}</p>`);
+            }
 
-The string we append, enclosed in backtick \` marks, is the Javascript approach to *string interpolation*, similar to f-strings in Python. 
+We have instead chosen a more "functional" form, using the `forEach` method of   
+Javascript arrays and passing it a function to evaluate on each element:
+
+            suggestions.forEach( function (s) {
+               the_div.append(`<p>${s}</p>`);
+            });
+
+The string we append, enclosed in backtick \` marks, is the Javascript approach to _string interpolation_, similar to f-strings in Python.
 
 ### The Server Side
 
-The server side of an Ajax request/response cycle is no different than a request for a web page, with one small exception:  Instead of sending an HTML document, the server encodes some response values in a JSON string, which is usually much smaller, and transmits that as the response.  There is nothing else at all special on the server side.  In fact, for any Ajax call, you give the request URL with data directly in the browser to see the text of the response: 
+The server side of an Ajax request/response cycle is no different than a request for a web page, with one small exception:  Instead of sending an HTML document, the server encodes some response values in a JSON string, which is usually much smaller, and transmits that as the response.  There is nothing else at all special on the server side.  In fact, for any Ajax call, you give the request URL with data directly in the browser to see the text of the response:
 
 ![Trying the Ajax request as an ordinary URL](img/ajax-direct.png)
 
-## Example source code 
+## Example source code
 
-The nanospell example is in the [Samples directory](Samples) in directory ['nanospell'](Samples/nanospell).  It is constructed as a Python application using the Flask web framework.  The Python code for the server side is [flask_server.py](Samples/nanospell/flask_server.py).  The HTML of the page, with embedded Javascript, is in [Samples/nanospell/templates/nanospell.html](Samples/nanospell/templates/nanospell.html).  A stylesheet and a copy of the jQuery library are in the [static](Samples/nanospell/static) subdirectory. 
-
-
-
+The nanospell example is in the [Samples directory](Samples) in directory ['nanospell'](Samples/nanospell).  It is constructed as a Python application using the Flask web framework.  The Python code for the server side is [flask\_server.py](Samples/nanospell/flask_server.py).  The HTML of the page, with embedded Javascript, is in [Samples/nanospell/templates/nanospell.html](Samples/nanospell/templates/nanospell.html).  A stylesheet and a copy of the jQuery library are in the [static](Samples/nanospell/static) subdirectory.
 
