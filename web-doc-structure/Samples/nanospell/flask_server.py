@@ -59,7 +59,8 @@ def suggest_completions():
     else:
         app.logger.debug("Didn't have a prefix to look up")
         completions = []
-    return jsonify(suggestions=completions)
+    result = jsonify(suggestions=completions)
+    return result
 
 
 #############
