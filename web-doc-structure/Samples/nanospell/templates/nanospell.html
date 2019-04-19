@@ -25,6 +25,20 @@
 <script>
     var the_entry_field = document.querySelector("#word");
 
+
+    /** Ask the server for suggested completions of a word. */
+    function be_helpful(event) {
+        let the_prefix = the_entry_field.value;
+        console.log("Got prefix: " + the_prefix );
+        //  The request will go the same server that the page came from
+        jQuery.get('/_suggest_completions',
+                  { "prefix": the_prefix },
+                  function(data) {
+                    insert_suggestions(data.suggestions);
+                  }
+        );
+    }
+
     /** Insert suggested completions into the the paragraph
      * with identifier #suggestions
      * @param suggestions a list of strings
@@ -39,18 +53,6 @@
         });
     }
 
-    /** Ask the server for suggested completions of a word. */
-    function be_helpful(event) {
-        let the_prefix = the_entry_field.value;
-        console.log("Got prefix: " + the_prefix );
-        //  The request will go the same server that the page came from
-        jQuery.get('/_suggest_completions',
-                  { "prefix": the_prefix },
-                  function(data) {
-                    insert_suggestions(data.suggestions);
-                  }
-        );
-    }
 
     /** Attach the 'be_helpful' listener to the input field. */
     jQuery(document).ready(function(ev) {
