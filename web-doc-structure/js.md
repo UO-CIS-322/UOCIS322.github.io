@@ -255,13 +255,17 @@ We will illustrate the Ajax approach with a tiny spelling helper.  As the user b
 
 ![](/web-doc-structure/img/nanospell.png)
 
-We want to provide the possible word completions keystroke-by-keystroke:  Each time the user adds \(or removes\) a letter in the form entry area, we find and display possible completions.  We don't want to include the whole list of dictionary words in the web page, because that would make the page slow to transmit.  We also don't want to reload the page with each keystroke, because that would be annoying and slow.  Instead, we will leave the dictionary lookup to the server.  With each keystroke, we will send a request to the server with the current content of the input field, and receive from the server a response that could be from zero to six possible words starting with the input text.  For example, if the current input is "we", we might receive the "we", 'weak", "weaken", "weakener", "weakfish", and "week-kneed" in the response.  We display each of these under the input field. 
+We want to provide the possible word completions keystroke-by-keystroke:  Each time the user adds \(or removes\) a letter in the form entry area, we find and display possible completions.  We don't want to include the whole list of dictionary words in the web page, because that would make the page slow to transmit.  We also don't want to reload the page with each keystroke, because that would be annoying and slow.  Instead, we will leave the dictionary lookup to the server.  With each keystroke, we will send a request to the server with the current content of the input field, and receive from the server a response that could be from zero to six possible words starting with the input text.  For example, if the current input is "we", we might receive the "we", 'weak", "weaken", "weakener", "weakfish", and "week-kneed" in the response.  We display each of these under the input field.
 
-Two aspects of this approach avoid the annoying delays and disruptions of a complete page refresh.  The first, and most important, is that the request will be asynchronous:  Even if the user presses more keys before a response arrives from the server, the input field continues to receive and display the input characters, and eventually the last response is displayed.  Second, the area for displaying responses is updated without refreshing the whole page.  
+Two aspects of this approach avoid the annoying delays and disruptions of a complete page refresh.  The first, and most important, is that the request will be asynchronous:  Even if the user presses more keys before a response arrives from the server, the input field continues to receive and display the input characters, and eventually the last response is displayed.  Second, the area for displaying responses is updated without refreshing the whole page.
+
+We will focus first on the browser side of this interaction, then look briefly at how it is handled by the server. 
 
 ### Triggering action on keystrokes
 
+\(like the last, but using jQuery\)
 
+The asynchronous call
 
-
+Updating the page text
 
