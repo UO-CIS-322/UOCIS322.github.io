@@ -263,11 +263,65 @@ We will focus first on the browser side of this interaction, then look briefly a
 
 ### Triggering action on keystrokes
 
-We will attach an event listener to the input field of nanospell.html much as we attached listeners to lines of Spanish poetry in the earlier example, except that this time we will use the jQuery Javascript library.  We load the library \(requesting it from the server\) in the 'head' part of the web page: 
+We will attach an event listener to the input field of nanospell.html much as we attached listeners to lines of Spanish poetry in the earlier example, except that this time we will use the jQuery Javascript library.  We load the library \(requesting it from the server\) in the 'head' part of the web page:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NanoSpell</title>
+    <link rel="stylesheet" href="/static/nanospell.css" />
+    <script src="/static/js/jquery-3.4.0.js"> </script>
+</head>
+```
+
+In this example we are loading a local copy of the jQuery library.  We could instead have loaded it from a remote content delivery network \(CDN\).  If the same library is used by several different applications, using a CDN can sometimes allow the browser to cache and reuse a library script that another page has loaded.  However, loading scripts from other servers can open an application to a class of security vulnerabilities called cross-site scripting attacks, so we include a digital signature to ensure that the version of the library we obtain has not been modified.  This of course means that we must reference a particular version of the library, rather than indicating we want whichever version is most up-to-date: 
+
+```
+<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+```
+
+The body of our page will contain an HTML form.  The input field will be labeled "entry" so that we can refer to it from Javascript. 
+
+```
+<body>
+ <form id="entry">
+    <label for="word">Word:</label>
+    <input id="word" name="word" type="text" width="25"
+      autocomplete="off"  autofocus />
+  </form>
+  <!-- (more here) -->
+</body>
+```
+
+We will create an empty "div" element into which our script can insert suggestions, again giving it an identifier so that we can refer to it in our script. 
+
+```
+  <div id="suggestions"></div>
+```
+
+In our poetry translation application, we used `document.addEventListener` to attach listener functions to elements of the page.  With jQuery we can do the same, a little more concisely.   We want to attach the event listener to the input field we called "entry".  The listener will respond to "key up" events, i.e., it will respond each time the user presses and then releases a key: 
+
+```
+<script>
+  // ... more here ... 
+  
+     jQuery(document).ready(function(ev) {
+                   jQuery("#word").keyup(be_helpful);
+                 });
+                 
+</script>
+```
+
+The outer call to the jQuery listens for the document DOM to be fully loaded.  When the document is loaded, the inner call to `jQuery("#word")` selects elements with identifier "word", i.e., the input field in our form, and attaches to it a function `be_helpful` to be called on each keyup event. 
+
+The function `be_helpful` 
 
 
-
-\(like the last, but using jQuery\)
 
 The asynchronous call
 
