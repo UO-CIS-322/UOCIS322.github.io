@@ -247,7 +247,7 @@ Now, if we click a line of the Spanish text, the `toggle_translation` handler  a
 
 ### Sample Source Code
 
-The source code for the page with Neruda's poem is in the [Sample Source Code](#sample-source-code "Sample source code to illustrate the parts of a web page") directory.  The content of the poem \(with English translation\) is in 
+The source code for the page with Neruda's poem is in the [Sample Source Code](#sample-source-code "Sample source code to illustrate the parts of a web page") directory.  The content of the poem \(with English translation\) is in [nada_mas.html](Samples/nada_mas.html) with a stylesheet in [vtranslate.css](Samples/vtranslate.css) and the Javascript for interaction in [vtranslate.js](Samples/vtranslate.js). 
 
 ## Updating the page with Ajax
 
