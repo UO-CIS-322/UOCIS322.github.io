@@ -140,7 +140,7 @@ There are many Javascript tutorials written for absolute beginners in programmin
 
 Javascript is often used with one or more substantial libraries like JQuery or complete frameworks like Node, Angular, or React.  These libraries and frameworks are extensive and almost like a programming language in themselves, raising the level of Javascript programming while also imposing their own particular style and conceptual model on scripts.  They evolve and are released rapidly, to the extent that [a site purporting to track the number of days](https://dayssincelastjavascriptframework.com/) since a new Javascript framework was introduced is probably not far from accurate:
 
-![](/web-doc-structure/img/days-since-last-js-framework.png)
+![](img/days-since-last-js-framework.png)
 
 In this chapter we will initially use just the built-in functions provided by web browsers, including the document object model of the web page, described next.  In the section on "ajax" interaction we will additionally use the jQuery library.  If you pursue web development professionally, you are likely to spend at least as much time learning a more sophisticated Javascript framework as learning the Javascript language, but it is impossible for us to guess which one, and in fact it is quite likely to be one that doesn't yet exist as of this writing.
 
@@ -148,7 +148,7 @@ In this chapter we will initially use just the built-in functions provided by we
 
 Scripts modify web pages, not as big blocks of text with tags, but as a tree in which tags identify nodes.  A pair of tags &lt;t&gt;..&lt;/t&gt; identify a subtree of element kind \_t, \_e.g., &lt;p&gt;Paragraph text &lt;span&gt;with a span&lt;/span&gt; in it&lt;/p&gt; is a "p" subtree with three children,  two of which are blocks of text and one of which is a "span" subtree.   You can view this tree as an outline in the 'inspector' window of the Firefox web developer tools, and in similar displays in the web development tools of other browsers.
 
-![](/web-doc-structure/img/firefox-show-zombie-dom-small.png)
+![](img/firefox-show-zombie-dom-small.png)
 
 Javascript listener functions can be attached to elements of the DOM tree so that they will be triggered by events like clicks and mouse hovers,  and Javascript functions can  traverse and modify the content of the tree.   That is how we will make elements interactive.
 
@@ -181,7 +181,7 @@ Although tedious to enter by hand, we could easily create a program to generate 
 
 Now the initial appearance of the page is all in Spanish:
 
-![](/web-doc-structure/img/nada-mas-es.png)
+![](img/nada-mas-es.png)
 
 We'll create another CSS class to reveal a span of English text.  If there are two CSS selectors that match an element, the more specific selector has priority, so we'll specify both the element type and the class to make the selector for revealing English more specific than the selector for hiding it, when the class `reveal` is applied to a `span` element.
 
@@ -243,7 +243,11 @@ This code actually adds an event handler to the top-level document object, which
 
 Now, if we click a line of the Spanish text, the `toggle_translation` handler  attaches \(or removes\) the `reveal` class, causing it to match \(or not\) the `span.reveal` selector in our CSS file, giving us the desired effect:
 
-![](/web-doc-structure/img/nada-mas-tr.png)
+![](img/nada-mas-tr.png)
+
+### Sample Source Code
+
+The source code for the page with Neruda's poem is in the [Sample Source Code](#sample-source-code "Sample source code to illustrate the parts of a web page") directory.  The content of the poem \(with English translation\) is in [nada_mas.html](Samples/nada_mas.html) with a stylesheet in [vtranslate.css](Samples/vtranslate.css) and the Javascript for interaction in [vtranslate.js](Samples/vtranslate.js). 
 
 ## Updating the page with Ajax
 
@@ -253,7 +257,7 @@ We can't prevent the latency of sending a request to the server and receiving a 
 
 We will illustrate the Ajax approach with a tiny spelling helper.  As the user begins typing a word, the spelling helper application provides a list of up to five possible completions:
 
-![](/web-doc-structure/img/nanospell.png)
+![](img/nanospell.png)
 
 We want to provide the possible word completions keystroke-by-keystroke:  Each time the user adds \(or removes\) a letter in the form entry area, we find and display possible completions.  We don't want to include the whole list of dictionary words in the web page, because that would make the page slow to transmit.  We also don't want to reload the page with each keystroke, because that would be annoying and slow.  Instead, we will leave the dictionary lookup to the server.  With each keystroke, we will send a request to the server with the current content of the input field, and receive from the server a response that could be from zero to six possible words starting with the input text.  For example, if the current input is "we", we might receive the "we", 'weak", "weaken", "weakener", "weakfish", and "week-kneed" in the response.  We display each of these under the input field.
 
@@ -263,13 +267,129 @@ We will focus first on the browser side of this interaction, then look briefly a
 
 ### Triggering action on keystrokes
 
-We will attach an event listener to the input field of nanospell.html much as we attached listeners to lines of Spanish poetry in the earlier example, except that this time we will use the jQuery Javascript library.  We load the library \(requesting it from the server\) in the 'head' part of the web page: 
+We will attach an event listener to the input field of nanospell.html much as we attached listeners to lines of Spanish poetry in the earlier example, except that this time we will use the jQuery Javascript library.  We load the library \(requesting it from the server\) in the 'head' part of the web page:
 
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NanoSpell</title>
+    <link rel="stylesheet" href="/static/nanospell.css" />
+    <script src="/static/js/jquery-3.4.0.js"> </script>
+</head>
+```
 
+In this example we are loading a local copy of the jQuery library.  We could instead have loaded it from a remote content delivery network \(CDN\).  If the same library is used by several different applications, using a CDN can sometimes allow the browser to cache and reuse a library script that another page has loaded.  However, loading scripts from other servers can open an application to a class of security vulnerabilities called cross-site scripting attacks, so we include a digital signature to ensure that the version of the library we obtain has not been modified.  This of course means that we must reference a particular version of the library, rather than indicating we want whichever version is most up-to-date:
 
-\(like the last, but using jQuery\)
+```
+<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+```
 
-The asynchronous call
+The body of our page will contain an HTML form.  The input field will be labeled "entry" so that we can refer to it from Javascript.
 
-Updating the page text
+```
+<body>
+ <form id="entry">
+    <label for="word">Word:</label>
+    <input id="word" name="word" type="text" width="25"
+      autocomplete="off"  autofocus />
+  </form>
+  <!-- (more here) -->
+</body>
+```
+
+We will create an empty "div" element into which our script can insert suggestions, again giving it an identifier so that we can refer to it in our script.
+
+```
+  <div id="suggestions"></div>
+```
+
+In our poetry translation application, we used `document.addEventListener` to attach listener functions to elements of the page.  With jQuery we can do the same, a little more concisely.   We want to attach the event listener to the input field we called "entry".  The listener will respond to "key up" events, i.e., it will respond each time the user presses and then releases a key:
+
+```
+<script>
+  // ... more here ... 
+
+     jQuery(document).ready(function(ev) {
+                   jQuery("#word").keyup(be_helpful);
+                 });
+
+</script>
+```
+
+The outer call to the jQuery listens for the document DOM to be fully loaded.  When the document is loaded, the inner call to `jQuery("#word")` selects elements with identifier "word", i.e., the input field in our form, and attaches to it a function `be_helpful` to be called on each keyup event.
+
+The function `be_helpful` sends the request to the server.  Since this is an _asynchronous_ communication, it does not block while waiting for the reply.  Instead, it schedules another function, `insert_suggestions`, to handle the reply when it arrives:
+
+```
+    /** Ask the server for suggested completions of a word. */
+    function be_helpful(event) {
+        jQuery.get('/_suggest_completions',  // to the same server that provided the page
+                  { "prefix": this.value },  // 'this' is where the keyup happened
+                  function(data) {
+                    insert_suggestions(data.suggestions);
+                  }
+        );
+    }
+```
+
+The data to be transmitted to the server is provided as a Javascript object:
+
+```
+{ "prefix": this.value }
+```
+
+The `jQuery.get` method \(a shorthand form of `jQuery.ajax`\) encodes the object as a parameter in the URL.  The response comes in the form, not of HTML, but another Javascript object represented by Javascript object notation \(JSON\), e.g.,
+
+```
+{"suggestions": ["we", "weak", "weaken", "weakener", "weakfish", "weak-kneed"]}
+```
+
+### Updating the Page
+
+Our function `be_helpful` schedules an anonymous function to handle the response,   
+and that function in turn calls `insert_suggestions` to update the page.
+
+       /** Insert suggested completions into the the paragraph
+         * with identifier #suggestions
+         */
+        function insert_suggestions(suggestions) {
+            let the_div = jQuery("#suggestions");
+            // Clear the old content
+            the_div.text("");
+            // Insert each suggestion
+            suggestions.forEach( function (s) {
+                the_div.append(`<p>${s}</p>`);
+            });
+        }
+
+`insert_suggestions` begins by using Query to select the document div element with identify "suggestions".  It clears the div by setting its text to the empty string,  
+then inserts each suggestions. We could have written a loop in a more familiar form:
+
+           for (let i=0; i < suggestions.length; ++i) {
+                the_div.append(`<p>${suggestions[i]}</p>`);
+            }
+
+We have instead chosen a more "functional" form, using the `forEach` method of   
+Javascript arrays and passing it a function to evaluate on each element:
+
+            suggestions.forEach( function (s) {
+               the_div.append(`<p>${s}</p>`);
+            });
+
+The string we append, enclosed in backtick \` marks, is the Javascript approach to _string interpolation_, similar to f-strings in Python.
+
+### The Server Side
+
+The server side of an Ajax request/response cycle is no different than a request for a web page, with one small exception:  Instead of sending an HTML document, the server encodes some response values in a JSON string, which is usually much smaller, and transmits that as the response.  There is nothing else at all special on the server side.  In fact, for any Ajax call, you give the request URL with data directly in the browser to see the text of the response:
+
+![Trying the Ajax request as an ordinary URL](img/ajax-direct.png)
+
+## Example source code
+
+The nanospell example is in the [Samples directory](Samples) in directory ['nanospell'](Samples/nanospell).  It is constructed as a Python application using the Flask web framework.  The Python code for the server side is [flask\_server.py](Samples/nanospell/flask_server.py).  The HTML of the page, with embedded Javascript, is in [Samples/nanospell/templates/nanospell.html](Samples/nanospell/templates/nanospell.html).  A stylesheet and a copy of the jQuery library are in the [static](Samples/nanospell/static) subdirectory.
 

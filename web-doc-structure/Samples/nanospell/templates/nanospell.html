@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <title>NanoSpell</title>
     <link rel="stylesheet" href="/static/nanospell.css" />
-    <!-- We will use the JQuery library for a convenient
-      -- interface for making an AJAX call.
-      -->
+    <!-- Local (on the server) copy of jquery -->
     <script src="/static/js/jquery-3.4.0.js"> </script>
 </head>
 <body>
@@ -23,11 +21,19 @@
    -- is best included in the same page.
    -->
 <script>
-    var the_entry_field = document.querySelector("#word");
+
+    /** Ask the server for suggested completions of a word. */
+    function be_helpful(event) {
+        jQuery.get('/_suggest_completions',  // to the same server that provided the page
+                  { "prefix": this.value },  // 'this' is where the keyup happened
+                  function(data) {
+                    insert_suggestions(data.suggestions);
+                  }
+        );
+    }
 
     /** Insert suggested completions into the the paragraph
      * with identifier #suggestions
-     * @param suggestions a list of strings
      */
     function insert_suggestions(suggestions) {
         let the_div = jQuery("#suggestions");
@@ -35,21 +41,9 @@
         the_div.text("");
         // Insert each suggestion
         suggestions.forEach( function (s) {
-            the_div.append(`<p>${s}</p>`);
+           the_div.append(`<p>${s}</p>`);
         });
-    }
 
-    /** Ask the server for suggested completions of a word. */
-    function be_helpful(event) {
-        let the_prefix = the_entry_field.value;
-        console.log("Got prefix: " + the_prefix );
-        //  The request will go the same server that the page came from
-        jQuery.get('/_suggest_completions',
-                  { "prefix": the_prefix },
-                  function(data) {
-                    insert_suggestions(data.suggestions);
-                  }
-        );
     }
 
     /** Attach the 'be_helpful' listener to the input field. */
