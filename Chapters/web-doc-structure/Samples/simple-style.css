@@ -1,0 +1,9 @@
+/* A CSS file can have C-style comments */
+
+/* Select by element type */ 
+h1  { color: red; }
+li  { color: green; }
+
+/* Select by class */
+.disclaimer { font-size: 75%; }
+.useless-extra-warning { color: red; font-weight: bold; }

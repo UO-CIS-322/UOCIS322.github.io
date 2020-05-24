@@ -1,0 +1,85 @@
+/* 
+ * Zombie mashups with a sidebar and 
+ * dynamically adjusting widths. 
+ */
+
+
+body { font-family: Helvetica, Arial, sans-serif;
+       font-size: 12pt;
+     }
+
+/* The page has a heading and footing.  Between them, 
+ * there is a navigation sidebar and a main content section. 
+ */
+
+div.pagehead, div.pagefoot {  /* ',' means "or" */ 
+    background-color: rgb(250,200,255);
+}
+
+div.pagehead { font-size: 150%; }
+div.pagefoot { font-size: 75%;  }
+
+div.content {
+    display: flex;     /* Rows and columns */
+    flex-wrap: wrap;   /* Stack if too narrow */
+}
+
+div.content .sidebar {  /* Read as "navbar within content" */
+    padding: 1ex; 
+    background-color: rgb(240,240,240);
+    /* Width of section */
+    width: 15%;       /* Ideal, within limits ... */ 
+    max-width: 20em; 
+    min-width: 10em;  /* Wrap if it would be narrower */ 
+    flex-grow: 1;     /* Half as stretchy as main column */
+    flex-shrink: 2;   /* Twice as compressible as main column */ 
+}
+
+div.content .main-content {
+    padding-left: 1em;
+    padding-right: 1em; 
+    /* Ideal size, limits, and stretchiness */
+    width: 75%;
+    max-width: 40em;
+    min-width: 20em;
+    flex-grow: 2;
+    flex-shrink: 1;
+}
+
+/* Modified formatting per division */
+h1.page-title, div.pagefoot p  {
+    text-align:  center;
+    padding: 1ex;
+    margin-bottom: 0.5ex; 
+}
+
+div.sidebar h1  {
+    font-size: 100%;
+}
+
+div.sidebar ul {
+    /* Bullets flush to left margin */  
+    margin-left: 0;
+    padding-left: 1em; 
+}
+
+/* Individual elements and classes are given as variants
+ *  on their parent element, which may in turn have inherited 
+ * attributes from 'body'. 
+ */
+
+h1 { color: rgb(219, 56, 24); }
+
+.precis {
+    font-family:  Times, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 125%; 
+    margin-left:3em;   /* Width of 3 'm' in the current font. */ 
+    margin-right: 3em; 
+}
+
+.movie-title {
+    font-weight: bold; 
+    color: rgb(219, 56, 24);
+}
+

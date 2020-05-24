@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NanoSpell</title>
+    <link rel="stylesheet" href="/static/nanospell.css" />
+    <!-- Local (on the server) copy of jquery -->
+    <script src="/static/js/jquery-3.4.0.js"> </script>
+</head>
+<body>
+ <form id="entry">
+    <label for="word">Word:</label>
+    <input id="word" name="word" type="text" width="25"
+      autocomplete="off"  autofocus />
+  </form>
+  <div id="suggestions"></div>
+
+ <!-- A script that is relatively independent of page content
+   -- should be in a separate file.  A script that refers to
+   -- items on a page (e.g., #entry and #suggestions on this page)
+   -- is best included in the same page.
+   -->
+<script>
+
+    /** Ask the server for suggested completions of a word. */
+    function be_helpful(event) {
+        jQuery.get('/_suggest_completions',  // to the same server that provided the page
+                  { "prefix": this.value },  // 'this' is where the keyup happened
+                  function(data) {
+                    insert_suggestions(data.suggestions);
+                  }
+        );
+    }
+
+    /** Insert suggested completions into the the paragraph
+     * with identifier #suggestions
+     */
+    function insert_suggestions(suggestions) {
+        let the_div = jQuery("#suggestions");
+        // Clear the old content
+        the_div.text("");
+        // Insert each suggestion
+        suggestions.forEach( function (s) {
+           the_div.append(`<p>${s}</p>`);
+        });
+
+    }
+
+    /** Attach the 'be_helpful' listener to the input field. */
+    jQuery(document).ready(function(ev) {
+                   jQuery("#word").keyup(be_helpful);
+                 });
+
+</script>
+</body>
+</html>
