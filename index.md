@@ -8,8 +8,8 @@ title: Introduction to Software Engineering
 
 # Chapters
 
-* [Introduction](README.md)
-* [HTML+CSS+JS: The parts of a web page](Chapters/web-doc-structure/README.html)
+* [Introduction](README.html)
+* [HTML+CSS+JS: The parts of a web page](Chapters/web-doc-structure/index.html)
   * [HTML for structure and content](Chapters/web-doc-structure/html.html)
   * [Cascading style sheets for presentation](Chapters/web-doc-structure/css.html)
   * [Javascript for interaction](Chapters/web-doc-structure/js.html)
